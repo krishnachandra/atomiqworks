@@ -122,33 +122,33 @@ export function Contact() {
                     {/* Contact Info */}
                     <div className="mt-12 pt-8 border-t border-slate-200">
                         <div className="grid md:grid-cols-3 gap-6 text-center md:text-left">
-                            <div className="flex flex-col md:flex-row items-center md:items-start gap-3">
-                                <div className="w-10 h-10 rounded-lg bg-brand-primary/10 flex items-center justify-center text-brand-primary flex-shrink-0">
-                                    <Mail className="w-5 h-5" />
+                            <div className="flex flex-col md:flex-row items-center md:items-start gap-4">
+                                <div className="w-12 h-12 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-600 flex-shrink-0">
+                                    <Mail className="w-6 h-6" />
                                 </div>
                                 <div>
-                                    <div className="text-sm font-semibold text-brand-dark mb-1">Email</div>
-                                    <div className="text-sm text-slate-600">hello@atomiqworks.com</div>
+                                    <div className="text-base font-bold text-brand-dark mb-1">Email</div>
+                                    <div className="text-sm text-slate-500">atomiqworks@gmail.com</div>
                                 </div>
                             </div>
 
-                            <div className="flex flex-col md:flex-row items-center md:items-start gap-3">
-                                <div className="w-10 h-10 rounded-lg bg-brand-primary/10 flex items-center justify-center text-brand-primary flex-shrink-0">
-                                    <Phone className="w-5 h-5" />
+                            <div className="flex flex-col md:flex-row items-center md:items-start gap-4">
+                                <div className="w-12 h-12 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-600 flex-shrink-0">
+                                    <Phone className="w-6 h-6" />
                                 </div>
                                 <div>
-                                    <div className="text-sm font-semibold text-brand-dark mb-1">Phone</div>
-                                    <div className="text-sm text-slate-600">+1 (555) 123-4567</div>
+                                    <div className="text-base font-bold text-brand-dark mb-1">Phone</div>
+                                    <div className="text-sm text-slate-500">+91 80745 35932</div>
                                 </div>
                             </div>
 
-                            <div className="flex flex-col md:flex-row items-center md:items-start gap-3">
-                                <div className="w-10 h-10 rounded-lg bg-brand-primary/10 flex items-center justify-center text-brand-primary flex-shrink-0">
-                                    <MapPin className="w-5 h-5" />
+                            <div className="flex flex-col md:flex-row items-center md:items-start gap-4">
+                                <div className="w-12 h-12 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-600 flex-shrink-0">
+                                    <MapPin className="w-6 h-6" />
                                 </div>
                                 <div>
-                                    <div className="text-sm font-semibold text-brand-dark mb-1">Location</div>
-                                    <div className="text-sm text-slate-600">San Francisco, CA</div>
+                                    <div className="text-base font-bold text-brand-dark mb-1">Location</div>
+                                    <div className="text-sm text-slate-500">India</div>
                                 </div>
                             </div>
                         </div>

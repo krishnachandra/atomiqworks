@@ -4,13 +4,13 @@ import { Star, Quote } from 'lucide-react'
 
 const testimonials = [
     {
-        quote: "AtomiqWorks transformed our entire digital presence. The team's attention to detail and technical expertise is unmatched.",
+        quote: "AtomIQ Works transformed our entire digital presence. The team's attention to detail and technical expertise is unmatched.",
         author: "Sarah Chen",
         role: "VP of Product, TechFlow",
         rating: 5
     },
     {
-        quote: "Working with AtomiqWorks felt like having an extension of our own team. They delivered beyond expectations.",
+        quote: "Working with AtomIQ Works felt like having an extension of our own team. They delivered beyond expectations.",
         author: "Michael Rodriguez",
         role: "CTO, PayScale Systems",
         rating: 5

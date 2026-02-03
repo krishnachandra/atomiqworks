@@ -20,7 +20,7 @@ export function Navbar() {
                 <Link href="/" className="flex items-center gap-3 group">
                     <AtomiqLogo size={32} className="group-hover:scale-110 transition-transform duration-300" />
                     <span className="hidden sm:inline text-2xl font-bold tracking-tight text-brand-dark">
-                        AtomiqWorks
+                        AtomIQ Works
                     </span>
                 </Link>
 

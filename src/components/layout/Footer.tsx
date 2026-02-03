@@ -1,38 +1,37 @@
 'use client'
 import Link from 'next/link'
 import { Linkedin, Twitter, Github, Instagram } from 'lucide-react'
+import { AtomiqLogo } from '@/components/ui/AtomiqLogo'
 
 export function Footer() {
     const currentYear = new Date().getFullYear()
 
     return (
-        <footer className="bg-brand-dark text-white py-16 px-4 sm:px-6 lg:px-8">
+        <footer className="bg-brand-dark text-white py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
             <div className="max-w-7xl mx-auto">
                 <div className="grid md:grid-cols-4 gap-12 mb-12">
                     {/* Brand */}
                     <div className="md:col-span-2">
                         <Link href="/" className="text-2xl font-bold tracking-tight flex items-center gap-2 mb-4">
-                            <div className="w-8 h-8 rounded-full bg-brand-primary flex items-center justify-center text-white text-xs font-bold">
-                                ∞
-                            </div>
-                            AtomiqWorks
+                            <AtomiqLogo size={32} />
+                            AtomIQ Works
                         </Link>
                         <p className="text-slate-400 leading-relaxed max-w-md mb-6">
                             Engineering the future of digital. We build scalable, high-performance experiences for ambitious brands.
                         </p>
                         <div className="flex gap-4">
-                            <a href="#" className="w-10 h-10 rounded-lg bg-white/10 hover:bg-brand-primary flex items-center justify-center transition-colors">
+                            <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-white/50 cursor-not-allowed">
                                 <Linkedin className="w-5 h-5" />
-                            </a>
-                            <a href="#" className="w-10 h-10 rounded-lg bg-white/10 hover:bg-brand-primary flex items-center justify-center transition-colors">
+                            </div>
+                            <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-white/50 cursor-not-allowed">
                                 <Twitter className="w-5 h-5" />
-                            </a>
-                            <a href="#" className="w-10 h-10 rounded-lg bg-white/10 hover:bg-brand-primary flex items-center justify-center transition-colors">
+                            </div>
+                            <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-white/50 cursor-not-allowed">
                                 <Github className="w-5 h-5" />
-                            </a>
-                            <a href="#" className="w-10 h-10 rounded-lg bg-white/10 hover:bg-brand-primary flex items-center justify-center transition-colors">
+                            </div>
+                            <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-white/50 cursor-not-allowed">
                                 <Instagram className="w-5 h-5" />
-                            </a>
+                            </div>
                         </div>
                     </div>
 
@@ -60,7 +59,7 @@ export function Footer() {
                 </div>
 
                 <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-400">
-                    <p>© {currentYear} AtomiqWorks. All rights reserved.</p>
+                    <p>© {currentYear} AtomIQ Works. All rights reserved.</p>
                     <div className="flex gap-6">
                         <a href="#" className="hover:text-brand-secondary transition-colors">Privacy Policy</a>
                         <a href="#" className="hover:text-brand-secondary transition-colors">Terms of Service</a>
