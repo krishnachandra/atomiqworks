@@ -8,11 +8,14 @@ import { TrustSignals } from '@/components/sections/TrustSignals'
 import { Philosophy } from '@/components/sections/Philosophy'
 import { Contact } from '@/components/sections/Contact'
 
+import { StatsBanner } from '@/components/sections/StatsBanner'
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-brand-light text-brand-dark selection:bg-brand-secondary/30">
       <Navbar />
       <Hero />
+      <StatsBanner />
       <FeaturedWork />
       <Capabilities />
       <Process />

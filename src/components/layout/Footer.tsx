@@ -12,9 +12,9 @@ export function Footer() {
                 <div className="grid md:grid-cols-4 gap-12 mb-12">
                     {/* Brand */}
                     <div className="md:col-span-2">
-                        <Link href="/" className="text-2xl font-bold tracking-tight flex items-center gap-2 mb-4">
+                        <Link href="/" className="text-2xl tracking-tight flex items-center gap-2 mb-4">
                             <AtomiqLogo size={32} />
-                            AtomIQ Works
+                            <span><span className="font-semibold text-white">AtomIQ</span><span className="font-normal text-slate-400">Works</span></span>
                         </Link>
                         <p className="text-slate-400 leading-relaxed max-w-md mb-6">
                             Engineering the future of digital. We build scalable, high-performance experiences for ambitious brands.
@@ -37,7 +37,7 @@ export function Footer() {
 
                     {/* Services */}
                     <div>
-                        <h3 className="font-semibold mb-4">Services</h3>
+                        <h3 className="font-semibold mb-4">Our Services</h3>
                         <ul className="space-y-3 text-slate-400">
                             <li><a href="#capabilities" className="hover:text-brand-secondary transition-colors">Design</a></li>
                             <li><a href="#capabilities" className="hover:text-brand-secondary transition-colors">Engineering</a></li>
@@ -50,8 +50,8 @@ export function Footer() {
                     <div>
                         <h3 className="font-semibold mb-4">Company</h3>
                         <ul className="space-y-3 text-slate-400">
-                            <li><a href="#work" className="hover:text-brand-secondary transition-colors">Work</a></li>
-                            <li><a href="#process" className="hover:text-brand-secondary transition-colors">Process</a></li>
+                            <li><a href="#work" className="hover:text-brand-secondary transition-colors">Our Work</a></li>
+                            <li><a href="#process" className="hover:text-brand-secondary transition-colors">How we Ship</a></li>
                             <li><a href="#contact" className="hover:text-brand-secondary transition-colors">Contact</a></li>
                             <li><a href="#" className="hover:text-brand-secondary transition-colors">Careers</a></li>
                         </ul>

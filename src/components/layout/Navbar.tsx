@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
 import { Menu, X } from 'lucide-react';
@@ -7,20 +7,29 @@ import { AtomiqLogo } from '@/components/ui/AtomiqLogo';
 
 export function Navbar() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 20);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     const navLinks = [
-        { href: '#work', label: 'Work' },
-        { href: '#capabilities', label: 'Services' },
-        { href: '#process', label: 'Process' },
+        { href: '#work', label: 'Our Work' },
+        { href: '#capabilities', label: 'Our Services' },
+        { href: '#process', label: 'How we Ship' },
     ];
 
     return (
-        <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
+        <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/80 backdrop-blur-md shadow-sm' : 'bg-transparent'}`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
                 <Link href="/" className="flex items-center gap-3 group">
                     <AtomiqLogo size={32} className="group-hover:scale-110 transition-transform duration-300" />
-                    <span className="hidden sm:inline text-2xl font-bold tracking-tight text-brand-dark">
-                        AtomIQ Works
+                    <span className="hidden sm:inline text-2xl tracking-tight">
+                        <span className="font-semibold text-brand-dark">AtomIQ</span><span className="font-normal text-slate-500">Works</span>
                     </span>
                 </Link>
 
@@ -40,7 +49,7 @@ export function Navbar() {
 
                 <div className="flex items-center gap-4">
                     <Button variant="primary" size="sm" className="hidden sm:inline-flex">
-                        Start a Project
+                        Let's Talk
                     </Button>
 
                     {/* Mobile Menu Button */}
@@ -69,7 +78,7 @@ export function Navbar() {
                             </Link>
                         ))}
                         <Button variant="primary" size="md" className="w-full">
-                            Start a Project
+                            Let's Talk
                         </Button>
                     </div>
                 </div>

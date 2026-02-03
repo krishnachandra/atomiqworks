@@ -87,7 +87,7 @@ export function AtomiqLogo({ size = 32, className = '', colors }: AtomiqLogoProp
             {/* LAYER 2: NUCLEUS (Middle) */}
             <div className="absolute inset-0 flex items-center justify-center z-10">
                 <div
-                    className={`relative rounded-full overflow-hidden shadow-[inset_-2px_-2px_6px_rgba(0,0,0,0.3),0_4px_6px_rgba(0,0,0,0.3)] box-content border border-black/10`}
+                    className={`relative rounded-full overflow-hidden shadow-[inset_-2px_-2px_6px_rgba(0,0,0,0.3),0_4px_6px_rgba(0,0,0,0.3)] box-content`}
                     style={{
                         width: `${nucleusSize}px`,
                         height: `${nucleusSize}px`,
