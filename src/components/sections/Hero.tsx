@@ -1,7 +1,7 @@
 'use client'
 import { Button } from '@/components/ui/Button'
 import { motion } from 'framer-motion'
-import { PortfolioCarousel } from '@/components/ui/PortfolioCarousel'
+import { CoverflowCarousel } from '@/components/ui/CoverflowCarousel'
 import Image from 'next/image'
 
 export function Hero() {
@@ -168,7 +168,7 @@ export function Hero() {
                         {/* Decorative background element behind carousel */}
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-brand-primary/5 to-brand-secondary/5 rounded-full blur-3xl -z-10" />
 
-                        <PortfolioCarousel />
+                        <CoverflowCarousel />
                     </motion.div>
                 </div>
             </div>
