@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { ArrowUp, ArrowLeft, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
+import { BookShowcase } from '@/components/ui/BookShowcase'
 
 // --- MOCK DATA FOR SHEET STACK ---
 const projects = [
@@ -285,6 +286,15 @@ export default function CarouselShowcase() {
                     <p className="text-slate-500">Refined Controls. Fan Layout.</p>
                 </div>
                 <CoverflowCarousel />
+            </section>
+
+            <section className="max-w-7xl mx-auto space-y-8 text-center">
+                <div>
+                    <span className="text-brand-primary font-bold uppercase tracking-widest">Option 4</span>
+                    <h2 className="text-4xl font-bold mt-2">3D Book Showcase</h2>
+                    <p className="text-slate-500">Elegant 3D presentation with realistic depth and lighting.</p>
+                </div>
+                <BookShowcase />
             </section>
 
         </main>

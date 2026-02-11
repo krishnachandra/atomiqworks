@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useMemo } from 'react'
 
 interface ColorConfig {
     nucleus: {
@@ -22,14 +23,7 @@ interface AtomiqLogoProps {
 }
 
 export function AtomiqLogo({ size = 32, className = '', colors }: AtomiqLogoProps) {
-    const containerSize = size * 2
-    const nucleusSize = size * 0.35
-    const electronSize = size * 0.25
-    const orbitRadiusX = size * 0.85
-    const orbitRadiusY = size * 0.35
-
-    // Default Configuration (Current Brand)
-    const defaultConfig: ColorConfig = {
+    const defaultColors = useMemo<ColorConfig>(() => ({
         nucleus: { from: 'from-red-500', to: 'to-red-700' },
         continent: 'transparent',
         electrons: [
@@ -37,22 +31,51 @@ export function AtomiqLogo({ size = 32, className = '', colors }: AtomiqLogoProp
             { light: '#4fdcd0', main: '#1db9a4', dark: '#148f7f' }, // Teal
             { light: '#c2e66e', main: '#a2cc46', dark: '#7fa332' }  // Green
         ]
-    };
+    }), []);
 
-    const config = colors || defaultConfig;
+    const config = colors || defaultColors;
 
-    const numberOfPoints = 60
-    const points = Array.from({ length: numberOfPoints }, (_, i) => {
-        const theta = (i / numberOfPoints) * 2 * Math.PI
+    const {
+        containerSize,
+        nucleusSize,
+        electronSize,
+        orbitRadiusX,
+        orbitRadiusY,
+        xKeyframes,
+        yKeyframes
+    } = useMemo(() => {
+        const containerSize = size * 2
+        const nucleusSize = size * 0.35
+        const electronSize = size * 0.25
+        const orbitRadiusX = size * 0.85
+        const orbitRadiusY = size * 0.35
+
+        const numberOfPoints = 60
+        const points = Array.from({ length: numberOfPoints }, (_, i) => {
+            const theta = (i / numberOfPoints) * 2 * Math.PI
+            return {
+                x: orbitRadiusX * Math.cos(theta),
+                y: orbitRadiusY * Math.sin(theta)
+            }
+        })
+        points.push({
+            x: orbitRadiusX * Math.cos(0),
+            y: orbitRadiusY * Math.sin(0)
+        })
+
+        const xKeyframes = points.map(p => p.x)
+        const yKeyframes = points.map(p => p.y)
+
         return {
-            x: orbitRadiusX * Math.cos(theta),
-            y: orbitRadiusY * Math.sin(theta)
+            containerSize,
+            nucleusSize,
+            electronSize,
+            orbitRadiusX,
+            orbitRadiusY,
+            xKeyframes,
+            yKeyframes
         }
-    })
-    points.push(points[0])
-
-    const xKeyframes = points.map(p => p.x)
-    const yKeyframes = points.map(p => p.y)
+    }, [size]);
 
     return (
         <div

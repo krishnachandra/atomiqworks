@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { GoogleAnalytics } from '@next/third-parties/google'
+import { FloatingChatbot } from '@/components/ui/FloatingChatbot'
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -114,6 +115,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         {children}
+        <FloatingChatbot />
         <GoogleAnalytics gaId="G-JDWPDHLR9D" />
       </body>
     </html>

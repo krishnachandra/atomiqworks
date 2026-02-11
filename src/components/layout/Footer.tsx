@@ -1,69 +1,127 @@
 'use client'
 import Link from 'next/link'
-import { Linkedin, Twitter, Github, Instagram } from 'lucide-react'
+import { Linkedin, Twitter, Github, Instagram, Facebook } from 'lucide-react'
 import { AtomiqLogo } from '@/components/ui/AtomiqLogo'
 
 export function Footer() {
-    const currentYear = new Date().getFullYear()
+    const currentYear = new Date().getFullYear();
+
+    const sections = {
+        services: [
+            "Web Development", "Mobile App Development", "UI/UX Design", "AI & ML Solutions", "DevOps & Cloud", "Product Strategy", "E-Commerce Solutions"
+        ],
+        expertise: [
+            "FinTech", "HealthTech", "EdTech", "Real Estate", "Media & Entertainment", "Logistics", "Retail", "Travel & Hospitality"
+        ],
+        company: [
+            { label: "About Us", href: "/about" },
+            { label: "Services", href: "/#capabilities" },
+            { label: "Our Work", href: "/work" },
+            { label: "Process", href: "/#process" },
+            { label: "Contact Us", href: "/#contact" }
+        ]
+    }
 
     return (
-        <footer className="bg-brand-dark text-white py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-            <div className="max-w-7xl mx-auto">
-                <div className="grid md:grid-cols-4 gap-12 mb-12">
+        <footer className="bg-black text-white pt-20 pb-10 px-4 sm:px-6 lg:px-8 font-sans border-t border-white/10">
+            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-12 mb-20">
+                {/* Column 1: Brand & Offices */}
+                <div className="space-y-8">
                     {/* Brand */}
-                    <div className="md:col-span-2">
-                        <Link href="/" className="text-2xl tracking-tight flex items-center gap-2 mb-4">
-                            <AtomiqLogo size={32} />
-                            <span><span className="font-semibold text-white">AtomIQ</span><span className="font-normal text-slate-400">Works</span></span>
-                        </Link>
-                        <p className="text-slate-400 leading-relaxed max-w-md mb-6">
-                            Engineering the future of digital. We build scalable, high-performance experiences for ambitious brands.
-                        </p>
-                        <div className="flex gap-4">
-                            <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-white/50 cursor-not-allowed">
-                                <Linkedin className="w-5 h-5" />
-                            </div>
-                            <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-white/50 cursor-not-allowed">
-                                <Twitter className="w-5 h-5" />
-                            </div>
-                            <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-white/50 cursor-not-allowed">
-                                <Github className="w-5 h-5" />
-                            </div>
-                            <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-white/50 cursor-not-allowed">
-                                <Instagram className="w-5 h-5" />
-                            </div>
+                    <Link href="/" className="flex items-center gap-3 group">
+                        <AtomiqLogo size={40} className="group-hover:scale-110 transition-transform duration-300" colors={{
+                            nucleus: { from: 'from-white', to: 'to-slate-300' },
+                            continent: 'transparent',
+                            electrons: [
+                                { light: '#ffffff', main: '#e2e8f0', dark: '#94a3b8' },
+                                { light: '#ffffff', main: '#e2e8f0', dark: '#94a3b8' },
+                                { light: '#ffffff', main: '#e2e8f0', dark: '#94a3b8' }
+                            ]
+                        }} />
+                        <span className="text-2xl font-bold tracking-tight">AtomIQ Works</span>
+                    </Link>
+                    <p className="text-gray-400 text-sm leading-relaxed max-w-sm">
+                        AtomIQ Works is a premium digital product agency, engineering scalable, high-performance experiences for ambitious brands worldwide.
+                    </p>
+
+                    {/* Offices */}
+                    <div className="space-y-6">
+                        <h4 className="text-white font-bold text-lg border-b border-white/10 pb-2 inline-block">Our Offices</h4>
+
+                        <div className="space-y-1">
+                            <strong className="text-white block text-sm mb-1">INDIA (Hyderabad)</strong>
+                            <p className="text-gray-400 text-xs leading-relaxed">
+                                Hitech City, Hyderabad, Telangana 500081
+                            </p>
                         </div>
-                    </div>
 
-                    {/* Services */}
-                    <div>
-                        <h3 className="font-semibold mb-4">Our Services</h3>
-                        <ul className="space-y-3 text-slate-400">
-                            <li><a href="#capabilities" className="hover:text-brand-secondary transition-colors">Design</a></li>
-                            <li><a href="#capabilities" className="hover:text-brand-secondary transition-colors">Engineering</a></li>
-                            <li><a href="#capabilities" className="hover:text-brand-secondary transition-colors">Performance</a></li>
-                            <li><a href="#capabilities" className="hover:text-brand-secondary transition-colors">Strategy</a></li>
-                        </ul>
-                    </div>
-
-                    {/* Company */}
-                    <div>
-                        <h3 className="font-semibold mb-4">Company</h3>
-                        <ul className="space-y-3 text-slate-400">
-                            <li><a href="#work" className="hover:text-brand-secondary transition-colors">Our Work</a></li>
-                            <li><a href="#process" className="hover:text-brand-secondary transition-colors">How we Ship</a></li>
-                            <li><a href="#contact" className="hover:text-brand-secondary transition-colors">Contact</a></li>
-                            <li><a href="#" className="hover:text-brand-secondary transition-colors">Careers</a></li>
-                        </ul>
+                        <div className="space-y-1">
+                            <strong className="text-white block text-sm mb-1">USA (Delaware)</strong>
+                            <p className="text-gray-400 text-xs leading-relaxed">
+                                1209 Orange Street, Wilmington, DE 19801
+                            </p>
+                        </div>
                     </div>
                 </div>
 
-                <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-400">
-                    <p>© {currentYear} AtomIQ Works. All rights reserved.</p>
-                    <div className="flex gap-6">
-                        <a href="#" className="hover:text-brand-secondary transition-colors">Privacy Policy</a>
-                        <a href="#" className="hover:text-brand-secondary transition-colors">Terms of Service</a>
-                    </div>
+                {/* Column 2: Services */}
+                <div>
+                    <h3 className="text-white font-bold text-lg mb-6">Services</h3>
+                    <ul className="space-y-4">
+                        {sections.services.map((item) => (
+                            <li key={item}>
+                                <Link href="/#capabilities" className="text-gray-400 hover:text-white text-sm transition-colors hover:translate-x-1 inline-block duration-200">{item}</Link>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
+                {/* Column 3: Expertise */}
+                <div>
+                    <h3 className="text-white font-bold text-lg mb-6">Expertise</h3>
+                    <ul className="space-y-4">
+                        {sections.expertise.map((item) => (
+                            <li key={item}>
+                                <Link href="/#capabilities" className="text-gray-400 hover:text-white text-sm transition-colors hover:translate-x-1 inline-block duration-200">{item}</Link>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
+                {/* Column 4: Company */}
+                <div>
+                    <h3 className="text-white font-bold text-lg mb-6">Company</h3>
+                    <ul className="space-y-4">
+                        {sections.company.map((item) => (
+                            <li key={item.label}>
+                                <Link href={item.href} className="text-gray-400 hover:text-white text-sm transition-colors hover:translate-x-1 inline-block duration-200">{item.label}</Link>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
+
+            {/* Bottom Bar */}
+            <div className="max-w-7xl mx-auto pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
+                <div className="text-gray-500 text-xs md:text-sm">
+                    A subsidiary of AtomIQ Technologies
+                </div>
+
+                <div className="text-gray-500 text-xs md:text-sm text-center">
+                    © {currentYear} AtomIQ Works. All Rights Reserved.
+                </div>
+
+                <div className="flex items-center gap-3">
+                    {[
+                        { Icon: Linkedin, href: "#" },
+                        { Icon: Twitter, href: "#" },
+                        { Icon: Instagram, href: "#" },
+                        { Icon: Github, href: "#" }
+                    ].map(({ Icon, href }, i) => (
+                        <a key={i} href={href} className="w-8 h-8 rounded-full bg-white text-black flex items-center justify-center hover:bg-brand-primary hover:text-white transition-all duration-300 transform hover:scale-110">
+                            <Icon size={16} strokeWidth={2.5} />
+                        </a>
+                    ))}
                 </div>
             </div>
         </footer>

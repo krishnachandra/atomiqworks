@@ -1,12 +1,14 @@
 'use client'
-import { Button } from '@/components/ui/Button'
+
 import { motion } from 'framer-motion'
 import { CoverflowCarousel } from '@/components/ui/CoverflowCarousel'
+import { MarqueeScroller } from '@/components/ui/MarqueeScroller'
 import Image from 'next/image'
+import { ChevronRight, ArrowRight } from 'lucide-react'
 
 export function Hero() {
     return (
-        <section className="relative min-h-screen flex items-center pt-32 overflow-hidden bg-brand-light">
+        <section className="relative min-h-screen flex pt-28 overflow-hidden bg-brand-light">
             {/* 3D Space Background Grid */}
             <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none"
                 style={{
@@ -64,44 +66,39 @@ export function Hero() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.2 }}
                         >
-                            We design and build high-performance <span className="font-bold text-slate-800">websites, platforms, and experiences</span> for ambitious brands.
+                            High-performance <span className="font-bold text-slate-800">websites, platforms, apps and experiences</span> for ambitious brands.
                         </motion.p>
 
                         <motion.div
-                            className="flex flex-wrap gap-3 mb-8 text-lg font-medium"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 0.5, delay: 0.4 }}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: 0.25 }}
+                            className="mb-8 flex items-center gap-2"
                         >
-                            {["Design.", "Engineer.", "Launch.", "Scale."].map((word, i) => (
-                                <motion.span
-                                    key={i}
-                                    initial={{ opacity: 0, x: -10 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: 0.5 + (i * 0.2), duration: 0.5 }}
-                                    className={`${i === 3 ? "text-brand-primary font-bold" : "text-slate-700"}`}
-                                >
-                                    {word}
-                                </motion.span>
-                            ))}
+                            <a href="#work" className="text-brand-primary font-bold text-lg hover:underline flex items-center gap-2 group">
+                                Checkout our work here
+                                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                            </a>
                         </motion.div>
 
+
+
+                        {/* Contact Icons */}
                         <motion.div
-                            className="flex flex-wrap gap-4"
+                            className="flex items-center gap-6 mt-4"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.3 }}
                         >
-                            <Button size="md" variant="primary">Let's Talk</Button>
-                        </motion.div>
-
-                        {/* Contact Icons */}
-                        <motion.div
-                            className="flex items-center gap-10 mt-10"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: 0.4 }}
-                        >
+                            <div className="flex items-center gap-1">
+                                <span className="font-bold text-slate-800">Get in Touch</span>
+                                <motion.div
+                                    animate={{ x: [0, 5, 0] }}
+                                    transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                                >
+                                    <ChevronRight className="w-5 h-5 text-brand-primary" />
+                                </motion.div>
+                            </div>
                             {/* WhatsApp */}
                             <a
                                 href="https://wa.me/918074535932"
@@ -109,7 +106,7 @@ export function Hero() {
                                 rel="noopener noreferrer"
                                 className="group hover:opacity-80 transition-opacity"
                             >
-                                <div className="relative w-12 h-12 hover:scale-110 transition-transform duration-300 drop-shadow-md">
+                                <div className="relative w-9 h-9 hover:scale-110 transition-transform duration-300 drop-shadow-md">
                                     <Image
                                         src="/icons/whatsapp.png"
                                         alt="WhatsApp"
@@ -126,7 +123,7 @@ export function Hero() {
                                 className="group hover:opacity-80 transition-opacity"
                             >
                                 <div className="hover:scale-110 transition-transform duration-300">
-                                    <div className="relative w-8 h-8 drop-shadow-md rotate-12">
+                                    <div className="relative w-6 h-6 drop-shadow-md rotate-12">
                                         <Image
                                             src="/icons/phone.png"
                                             alt="Call"
@@ -143,7 +140,7 @@ export function Hero() {
                                 href="mailto:atomiqworks@gmail.com"
                                 className="group hover:opacity-80 transition-opacity"
                             >
-                                <div className="relative w-12 h-12 hover:scale-110 transition-transform duration-300 drop-shadow-md">
+                                <div className="relative w-9 h-9 hover:scale-110 transition-transform duration-300 drop-shadow-md">
                                     <Image
                                         src="/icons/email.png"
                                         alt="Email"
@@ -172,6 +169,9 @@ export function Hero() {
                     </motion.div>
                 </div>
             </div>
+
+            {/* Infinite Text Marquee */}
+            <MarqueeScroller />
         </section>
     )
 }

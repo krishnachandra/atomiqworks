@@ -18,9 +18,11 @@ export function Navbar() {
     }, []);
 
     const navLinks = [
-        { href: '#work', label: 'Our Work' },
+        { href: '/work', label: 'Our Work' },
         { href: '#capabilities', label: 'Our Services' },
-        { href: '#process', label: 'How we Ship' },
+        { href: '#process', label: 'What We Do' },
+        { href: '/about', label: 'About Us' },
+        { href: '#contact', label: 'Contact Us' },
     ];
 
     return (
@@ -29,7 +31,7 @@ export function Navbar() {
                 <Link href="/" className="flex items-center gap-3 group">
                     <AtomiqLogo size={32} className="group-hover:scale-110 transition-transform duration-300" />
                     <span className="hidden sm:inline text-2xl tracking-tight">
-                        <span className="font-semibold text-brand-dark">AtomIQ</span><span className="font-normal text-slate-500">Works</span>
+                        <span className="font-semibold text-brand-dark">AtomIQ</span><span className="font-bold text-brand-primary">Works</span>
                     </span>
                 </Link>
 
