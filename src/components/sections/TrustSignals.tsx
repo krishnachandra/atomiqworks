@@ -23,21 +23,6 @@ const testimonials = [
     }
 ]
 
-const clientLogos = [
-    'TechFlow', 'PayScale', 'GreenRoute', 'DataViz', 'CloudSync', 'FinanceX'
-]
-
-const technologies = [
-    'React', 'Next.js', 'TypeScript', 'Node.js', 'PostgreSQL',
-    'AWS', 'Vercel', 'Tailwind', 'Framer Motion', 'GraphQL'
-]
-
-const metrics = [
-    { value: '150+', label: 'Projects Delivered' },
-    { value: '50+', label: 'Happy Clients' },
-    { value: '12+', label: 'Industry Awards' },
-    { value: '98%', label: 'Satisfaction Rate' }
-]
 
 export function TrustSignals() {
     return (
@@ -96,71 +81,7 @@ export function TrustSignals() {
                     </div>
                 </div>
 
-                {/* Client Logos */}
-                <motion.div
-                    className="mb-24"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                >
-                    <p className="text-center text-sm text-slate-500 uppercase tracking-widest mb-8 font-semibold">
-                        Trusted By
-                    </p>
-                    <div className="flex flex-wrap justify-center items-center gap-12">
-                        {clientLogos.map((logo, idx) => (
-                            <div
-                                key={idx}
-                                className="text-2xl font-bold text-slate-300 hover:text-brand-primary transition-colors"
-                            >
-                                {logo}
-                            </div>
-                        ))}
-                    </div>
-                </motion.div>
-
-                {/* Key Metrics */}
-                <motion.div
-                    className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-24"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                >
-                    {metrics.map((metric, idx) => (
-                        <div
-                            key={idx}
-                            className="bg-white rounded-xl p-6 text-center border border-slate-100"
-                        >
-                            <div className="text-4xl font-bold text-brand-primary mb-2">
-                                {metric.value}
-                            </div>
-                            <div className="text-sm text-slate-600 font-medium">
-                                {metric.label}
-                            </div>
-                        </div>
-                    ))}
-                </motion.div>
-
-                {/* Technologies */}
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                >
-                    <p className="text-center text-sm text-slate-500 uppercase tracking-widest mb-8 font-semibold">
-                        Technologies We Master
-                    </p>
-                    <div className="flex flex-wrap justify-center gap-3">
-                        {technologies.map((tech, idx) => (
-                            <span
-                                key={idx}
-                                className="px-4 py-2 bg-white text-slate-700 rounded-lg text-sm font-medium border border-slate-100 hover:border-brand-primary/30 hover:text-brand-primary transition-colors"
-                            >
-                                {tech}
-                            </span>
-                        ))}
-                    </div>
-                </motion.div>
             </div>
-        </section>
+        </section >
     )
 }
