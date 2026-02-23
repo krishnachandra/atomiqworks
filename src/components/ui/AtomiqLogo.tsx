@@ -90,19 +90,19 @@ export function AtomiqLogo({ size = 32, className = '', colors }: AtomiqLogoProp
                 {/* Orbit 1 Path (Vertical 90°) */}
                 <div className="absolute inset-0" style={{ transform: 'rotate(90deg)' }}>
                     <svg viewBox={`0 0 ${containerSize} ${containerSize}`} className="absolute inset-0 opacity-50">
-                        <ellipse cx={containerSize / 2} cy={containerSize / 2} rx={orbitRadiusX} ry={orbitRadiusY} fill="none" stroke="currentColor" strokeWidth="1" />
+                        <ellipse cx={containerSize / 2} cy={containerSize / 2} rx={orbitRadiusX} ry={orbitRadiusY} fill="none" stroke="currentColor" strokeWidth="2.5" />
                     </svg>
                 </div>
                 {/* Orbit 2 Path (Diagonal 30°) */}
                 <div className="absolute inset-0" style={{ transform: 'rotate(30deg)' }}>
                     <svg viewBox={`0 0 ${containerSize} ${containerSize}`} className="absolute inset-0 opacity-50">
-                        <ellipse cx={containerSize / 2} cy={containerSize / 2} rx={orbitRadiusX} ry={orbitRadiusY} fill="none" stroke="currentColor" strokeWidth="1" />
+                        <ellipse cx={containerSize / 2} cy={containerSize / 2} rx={orbitRadiusX} ry={orbitRadiusY} fill="none" stroke="currentColor" strokeWidth="2.5" />
                     </svg>
                 </div>
                 {/* Orbit 3 Path (Diagonal -30°) */}
                 <div className="absolute inset-0" style={{ transform: 'rotate(-30deg)' }}>
                     <svg viewBox={`0 0 ${containerSize} ${containerSize}`} className="absolute inset-0 opacity-50">
-                        <ellipse cx={containerSize / 2} cy={containerSize / 2} rx={orbitRadiusX} ry={orbitRadiusY} fill="none" stroke="currentColor" strokeWidth="1" />
+                        <ellipse cx={containerSize / 2} cy={containerSize / 2} rx={orbitRadiusX} ry={orbitRadiusY} fill="none" stroke="currentColor" strokeWidth="2.5" />
                     </svg>
                 </div>
             </div>
@@ -114,10 +114,13 @@ export function AtomiqLogo({ size = 32, className = '', colors }: AtomiqLogoProp
                     style={{
                         width: `${nucleusSize}px`,
                         height: `${nucleusSize}px`,
-                        background: config.nucleus.to.startsWith('#') ? config.nucleus.to : undefined // Fallback for pure hex
+                        background: config.nucleus.to.startsWith('#') ? config.nucleus.to : undefined
                     }}
                 >
-                    <div className={`absolute inset-0 bg-gradient-to-br ${config.nucleus.from} ${config.nucleus.to}`} />
+                    <div
+                        className="absolute inset-0"
+                        style={{ background: 'linear-gradient(to bottom right, #ef4444, #b91c1c)' }}
+                    />
                     <motion.div
                         className="absolute inset-0 flex"
                         style={{ width: '200%' }}
@@ -139,7 +142,10 @@ export function AtomiqLogo({ size = 32, className = '', colors }: AtomiqLogoProp
                             </div>
                         ))}
                     </motion.div>
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/30 via-transparent to-black/30 pointer-events-none" />
+                    <div
+                        className="absolute inset-0 rounded-full pointer-events-none"
+                        style={{ background: 'linear-gradient(to bottom right, rgba(255,255,255,0.3), transparent, rgba(0,0,0,0.3))' }}
+                    />
                 </div>
             </div>
 
@@ -159,7 +165,7 @@ export function AtomiqLogo({ size = 32, className = '', colors }: AtomiqLogoProp
                         animate={{ x: xKeyframes, y: yKeyframes }}
                         transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
                     >
-                        <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/40 to-transparent" />
+                        <div className="absolute inset-0 rounded-full" style={{ background: 'linear-gradient(to bottom right, rgba(255,255,255,0.4), transparent)' }} />
                     </motion.div>
                 </div>
 
@@ -177,7 +183,7 @@ export function AtomiqLogo({ size = 32, className = '', colors }: AtomiqLogoProp
                         animate={{ x: xKeyframes, y: yKeyframes }}
                         transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
                     >
-                        <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/40 to-transparent" />
+                        <div className="absolute inset-0 rounded-full" style={{ background: 'linear-gradient(to bottom right, rgba(255,255,255,0.4), transparent)' }} />
                     </motion.div>
                 </div>
 
@@ -195,7 +201,7 @@ export function AtomiqLogo({ size = 32, className = '', colors }: AtomiqLogoProp
                         animate={{ x: xKeyframes, y: yKeyframes }}
                         transition={{ duration: 7, repeat: Infinity, ease: "linear" }}
                     >
-                        <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/40 to-transparent" />
+                        <div className="absolute inset-0 rounded-full" style={{ background: 'linear-gradient(to bottom right, rgba(255,255,255,0.4), transparent)' }} />
                     </motion.div>
                 </div>
             </div>
