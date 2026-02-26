@@ -87,7 +87,7 @@ export function TrustSignals() {
                             viewport={{ once: true }}
                             transition={{ delay: 0.1 }}
                         >
-                            What Our Clients Think?
+                            What our Clients Say?
                         </motion.h2>
                     </div>
 
