@@ -18,8 +18,8 @@ export function Navbar() {
     }, []);
 
     const navLinks = [
-        { href: '/work', label: 'Our Work' },
-        { href: '/#services', label: 'Our Services' },
+        { href: '/work', label: 'Portfolio' },
+        { href: '/#services', label: 'Services' },
         { href: '/#why-us', label: 'Why Us' },
         { href: '/about', label: 'About' },
         { href: '/#contact', label: 'Contact' },
