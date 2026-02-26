@@ -80,7 +80,7 @@ export function StatsBanner() {
                         {clientLogos.map((logo, idx) => (
                             <div
                                 key={`a-${idx}`}
-                                className="flex-shrink-0 w-24 h-16 relative grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                                className="flex-shrink-0 w-36 h-20 relative opacity-90 hover:opacity-100 transition-all duration-300"
                             >
                                 <Image src={logo.src} alt={logo.alt} fill className="object-contain" />
                             </div>
@@ -88,7 +88,7 @@ export function StatsBanner() {
                         {clientLogos.map((logo, idx) => (
                             <div
                                 key={`b-${idx}`}
-                                className="flex-shrink-0 w-24 h-16 relative grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                                className="flex-shrink-0 w-36 h-20 relative opacity-90 hover:opacity-100 transition-all duration-300"
                             >
                                 <Image src={logo.src} alt={logo.alt} fill className="object-contain" />
                             </div>
