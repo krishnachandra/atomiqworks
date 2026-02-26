@@ -22,6 +22,8 @@ const clientLogos = [
     { src: "/clients/VH.png", alt: "VH" },
     { src: "/clients/WFM.png", alt: "WFM" },
     { src: "/clients/freshersworld.png", alt: "Freshersworld" },
+    { src: "/clients/simple mobile.png", alt: "Simple Mobile" },
+    { src: "/clients/tracfone.png", alt: "Tracfone" },
 ]
 
 export function StatsBanner() {
