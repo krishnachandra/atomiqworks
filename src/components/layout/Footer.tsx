@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import { Linkedin, Twitter, Github, Instagram, Facebook } from 'lucide-react'
+import { Linkedin, Twitter, Github, Instagram, Facebook, MapPin } from 'lucide-react'
 import { AtomiqLogo } from '@/components/ui/AtomiqLogo'
 
 export function Footer() {
@@ -33,7 +33,7 @@ export function Footer() {
                         <span className="text-2xl font-bold tracking-tight">AtomIQWorks</span>
                     </Link>
                     <p className="text-gray-400 text-sm leading-relaxed max-w-sm">
-                        AtomIQ Works is a premium digital product agency, engineering scalable, high-performance experiences for ambitious brands worldwide.
+                        AtomIQWorks is a premium digital product agency, engineering scalable, high-performance experiences for ambitious brands worldwide.
                     </p>
 
                     {/* Offices */}
@@ -41,15 +41,21 @@ export function Footer() {
                         <h4 className="text-white font-bold text-lg border-b border-white/10 pb-2 inline-block">Our Offices</h4>
 
                         <div className="space-y-1">
-                            <strong className="text-white block text-sm mb-1">INDIA (Hyderabad)</strong>
-                            <p className="text-gray-400 text-xs leading-relaxed">
+                            <div className="flex items-center gap-1.5 mb-1">
+                                <MapPin className="w-4 h-4 text-brand-primary" />
+                                <strong className="text-white block text-sm">India, Hyderabad</strong>
+                            </div>
+                            <p className="text-gray-400 text-xs leading-relaxed pl-5.5">
                                 Hitech City, Hyderabad, Telangana 500081
                             </p>
                         </div>
 
                         <div className="space-y-1">
-                            <strong className="text-white block text-sm mb-1">USA (Delaware)</strong>
-                            <p className="text-gray-400 text-xs leading-relaxed">
+                            <div className="flex items-center gap-1.5 mb-1">
+                                <MapPin className="w-4 h-4 text-brand-primary" />
+                                <strong className="text-white block text-sm">USA, Massachusetts</strong>
+                            </div>
+                            <p className="text-gray-400 text-xs leading-relaxed pl-5.5">
                                 1209 Orange Street, Wilmington, DE 19801
                             </p>
                         </div>
@@ -62,7 +68,7 @@ export function Footer() {
                     <ul className="space-y-4">
                         {sections.services.map((item) => (
                             <li key={item}>
-                                <Link href="/#capabilities" className="text-gray-400 hover:text-white text-sm transition-colors hover:translate-x-1 inline-block duration-200">{item}</Link>
+                                <span className="text-gray-400 text-sm">{item}</span>
                             </li>
                         ))}
                     </ul>
@@ -95,12 +101,10 @@ export function Footer() {
 
             {/* Bottom Bar */}
             <div className="max-w-7xl mx-auto pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
-                <div className="text-gray-500 text-xs md:text-sm">
-                    A subsidiary of AtomIQ Technologies
-                </div>
+
 
                 <div className="text-gray-500 text-xs md:text-sm text-center">
-                    © {currentYear} AtomIQ Works. All Rights Reserved.
+                    © {currentYear} AtomIQWorks. All Rights Reserved.
                 </div>
 
                 <div className="flex items-center gap-3">
