@@ -10,8 +10,7 @@ import Link from 'next/link'
 const landscapes = [
     { id: 1, title: "EZ Cut Media", type: "Visual Experience", src: "/portfolio/ezcutmedia.png" },
     { id: 2, title: "Paratpara Satakam", type: "Cultural Website", src: "/portfolio/paratparasatakam.png" },
-    { id: 3, title: "DavinciOps", type: "Corporate Site", src: "/portfolio/davinciops.png" },
-    { id: 4, title: "Moody Mushrooms", type: "E-commerce", src: "/portfolio/moodymushrooms.png" }
+    { id: 3, title: "Moody Mushrooms", type: "E-commerce", src: "/portfolio/moodymushrooms.png" }
 ]
 
 export const CoverflowCarousel = () => {

@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { MessageSquare, X, Send } from 'lucide-react'
 
@@ -10,6 +10,23 @@ export function FloatingChatbot() {
         { text: "Hi there! 👋 How can we help you today?", isUser: false }
     ])
     const [inputValue, setInputValue] = useState("")
+    const chatbotRef = useRef<HTMLDivElement>(null)
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (chatbotRef.current && !chatbotRef.current.contains(event.target as Node)) {
+                setIsOpen(false)
+            }
+        }
+
+        if (isOpen) {
+            document.addEventListener("mousedown", handleClickOutside)
+        }
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside)
+        }
+    }, [isOpen])
 
     const handleSendMessage = () => {
         if (!inputValue.trim()) return
@@ -24,7 +41,7 @@ export function FloatingChatbot() {
     }
 
     return (
-        <div className="fixed bottom-24 right-6 md:bottom-28 md:right-8 z-50 flex flex-col items-end">
+        <div ref={chatbotRef} className="fixed bottom-24 right-6 md:bottom-28 md:right-8 z-50 flex flex-col items-end">
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
