@@ -56,7 +56,7 @@ export function Footer() {
                                 <strong className="text-white block text-sm">USA, Massachusetts</strong>
                             </div>
                             <p className="text-gray-400 text-xs leading-relaxed pl-5.5">
-                                1209 Orange Street, Wilmington, DE 19801
+                                1000 Massachusetts Ave, Cambridge, MA 02138
                             </p>
                         </div>
                     </div>
@@ -104,7 +104,7 @@ export function Footer() {
 
 
                 <div className="text-gray-500 text-xs md:text-sm text-center">
-                    © {currentYear} AtomIQWorks. All Rights Reserved.
+                    © {currentYear} <strong>AtomIQWorks.</strong> All Rights Reserved.
                 </div>
 
                 <div className="flex items-center gap-3">
