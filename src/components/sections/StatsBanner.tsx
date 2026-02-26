@@ -76,7 +76,7 @@ export function StatsBanner() {
                     <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-brand-light to-transparent z-10 pointer-events-none" />
                     <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-brand-light to-transparent z-10 pointer-events-none" />
 
-                    <div className="flex animate-marquee gap-16 items-center">
+                    <div className="flex animate-marquee gap-16 items-center" style={{ width: 'max-content' }}>
                         {clientLogos.map((logo, idx) => (
                             <div
                                 key={`a-${idx}`}
@@ -88,6 +88,14 @@ export function StatsBanner() {
                         {clientLogos.map((logo, idx) => (
                             <div
                                 key={`b-${idx}`}
+                                className="flex-shrink-0 w-36 h-20 relative opacity-90 hover:opacity-100 transition-all duration-300"
+                            >
+                                <Image src={logo.src} alt={logo.alt} fill className="object-contain" />
+                            </div>
+                        ))}
+                        {clientLogos.map((logo, idx) => (
+                            <div
+                                key={`c-${idx}`}
                                 className="flex-shrink-0 w-36 h-20 relative opacity-90 hover:opacity-100 transition-all duration-300"
                             >
                                 <Image src={logo.src} alt={logo.alt} fill className="object-contain" />
