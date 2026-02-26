@@ -34,7 +34,7 @@ export function Footer() {
         ],
         company: [
             { label: "About Us", href: "/about" },
-            { label: "Our Services", href: "/#process" },
+            { label: "Our Services", href: "/#services" },
             { label: "Our Work", href: "/work" },
             { label: "Why Choose Us", href: "/#why-us" },
             { label: "Contact Us", href: "/#contact" }

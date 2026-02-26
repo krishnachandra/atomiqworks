@@ -39,7 +39,7 @@ export function Process() {
     ]
 
     return (
-        <section id="process" className="py-32 px-4 sm:px-6 lg:px-8 bg-white">
+        <section id="services" className="py-32 px-4 sm:px-6 lg:px-8 bg-white">
             <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-20">
                     <motion.h2

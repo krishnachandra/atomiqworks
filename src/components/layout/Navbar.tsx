@@ -19,7 +19,7 @@ export function Navbar() {
 
     const navLinks = [
         { href: '/work', label: 'Our Work' },
-        { href: '/#process', label: 'Our Services' },
+        { href: '/#services', label: 'Our Services' },
         { href: '/#why-us', label: 'Why Choose Us' },
         { href: '/about', label: 'About Us' },
         { href: '/#contact', label: 'Contact Us' },
