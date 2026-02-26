@@ -33,11 +33,11 @@ export function Footer() {
             "FinTech", "HealthTech", "EdTech", "Real Estate", "Media & Entertainment", "Logistics", "Retail", "Travel & Hospitality"
         ],
         company: [
-            { label: "About Us", href: "/about" },
+            { label: "About", href: "/about" },
             { label: "Our Services", href: "/#services" },
             { label: "Our Work", href: "/work" },
-            { label: "Why Choose Us", href: "/#why-us" },
-            { label: "Contact Us", href: "/#contact" }
+            { label: "Why Us", href: "/#why-us" },
+            { label: "Contact", href: "/#contact" }
         ]
     }
 

@@ -31,14 +31,7 @@ export function TrustSignals() {
                 {/* Testimonials */}
                 <div className="mb-24">
                     <div className="text-center mb-16">
-                        <motion.span
-                            className="text-brand-primary font-semibold text-sm tracking-widest uppercase mb-4 block"
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                        >
-                            Client Voices
-                        </motion.span>
+
                         <motion.h2
                             className="text-4xl md:text-5xl font-bold text-brand-dark"
                             initial={{ opacity: 0, y: 20 }}

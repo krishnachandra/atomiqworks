@@ -20,9 +20,9 @@ export function Navbar() {
     const navLinks = [
         { href: '/work', label: 'Our Work' },
         { href: '/#services', label: 'Our Services' },
-        { href: '/#why-us', label: 'Why Choose Us' },
-        { href: '/about', label: 'About Us' },
-        { href: '/#contact', label: 'Contact Us' },
+        { href: '/#why-us', label: 'Why Us' },
+        { href: '/about', label: 'About' },
+        { href: '/#contact', label: 'Contact' },
     ];
 
     return (
