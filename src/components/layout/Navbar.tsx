@@ -19,8 +19,8 @@ export function Navbar() {
 
     const navLinks = [
         { href: '/work', label: 'Our Work' },
-        { href: '/#capabilities', label: 'Our Services' },
-        { href: '/#process', label: 'What We Do' },
+        { href: '/#process', label: 'Our Services' },
+        { href: '/#capabilities', label: 'Why Choose Us' },
         { href: '/about', label: 'About Us' },
         { href: '/#contact', label: 'Contact Us' },
     ];
