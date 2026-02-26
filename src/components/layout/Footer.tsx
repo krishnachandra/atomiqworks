@@ -1,7 +1,26 @@
 'use client'
 import Link from 'next/link'
-import { Linkedin, Twitter, Github, Instagram, Facebook, MapPin } from 'lucide-react'
+import Image from 'next/image'
+import { Twitter, Github, Instagram, Facebook, MapPin } from 'lucide-react'
 import { AtomiqLogo } from '@/components/ui/AtomiqLogo'
+
+const WhatsappIcon = ({ size }: { size?: number | string, strokeWidth?: number | string }) => (
+    <div className="relative" style={{ width: size || 16, height: size || 16 }}>
+        <Image src="/icons/whatsapp.png" alt="WhatsApp" fill className="object-contain" />
+    </div>
+);
+
+const PhoneIcon = ({ size }: { size?: number | string }) => (
+    <div className="relative" style={{ width: size || 16, height: size || 16 }}>
+        <Image src="/icons/phone.png" alt="Call" fill className="object-contain mix-blend-multiply" />
+    </div>
+);
+
+const EmailIcon = ({ size }: { size?: number | string }) => (
+    <div className="relative" style={{ width: size || 16, height: size || 16 }}>
+        <Image src="/icons/email.png" alt="Email" fill className="object-contain" />
+    </div>
+);
 
 export function Footer() {
     const currentYear = new Date().getFullYear();
@@ -46,7 +65,8 @@ export function Footer() {
                                 <strong className="text-white block text-sm">India, Hyderabad</strong>
                             </div>
                             <p className="text-gray-400 text-xs leading-relaxed pl-5.5">
-                                Hitech City, Hyderabad, Telangana 500081
+                                Hitech City, Hyderabad, Telangana 500081<br />
+                                <a href="tel:+918074535932" className="hover:text-white transition-colors mt-1 inline-block">+91 80745 35932</a>
                             </p>
                         </div>
 
@@ -109,12 +129,17 @@ export function Footer() {
 
                 <div className="flex items-center gap-3">
                     {[
-                        { Icon: Linkedin, href: "#" },
-                        { Icon: Twitter, href: "#" },
-                        { Icon: Instagram, href: "#" },
-                        { Icon: Github, href: "#" }
-                    ].map(({ Icon, href }, i) => (
-                        <a key={i} href={href} className="w-8 h-8 rounded-full bg-white text-black flex items-center justify-center hover:bg-brand-primary hover:text-white transition-all duration-300 transform hover:scale-110">
+                        { Icon: WhatsappIcon, href: "https://wa.me/918074535932", external: true },
+                        { Icon: PhoneIcon, href: "tel:+918074535932", external: true },
+                        { Icon: EmailIcon, href: "mailto:atomiqworks@gmail.com", external: true }
+                    ].map(({ Icon, href, external }, i) => (
+                        <a
+                            key={i}
+                            href={href}
+                            target={external ? "_blank" : undefined}
+                            rel={external ? "noopener noreferrer" : undefined}
+                            className="w-8 h-8 rounded-full bg-white text-black flex items-center justify-center hover:bg-brand-primary hover:text-white transition-all duration-300 transform hover:scale-110"
+                        >
                             <Icon size={16} strokeWidth={2.5} />
                         </a>
                     ))}
