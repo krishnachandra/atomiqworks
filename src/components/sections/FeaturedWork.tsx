@@ -13,40 +13,46 @@ interface Project {
 
 const projects: Project[] = [
     {
-        id: '1',
-        title: 'Mirafra',
-        description: "Revamped Mirafra's website to showcase a vast array of cutting-edge engineering solutions with an attractive, user-friendly design.",
-        image: '/portfolio/mirafra.png' // Placeholder path
+        id: '7',
+        title: 'EZ Cut Media',
+        description: "A dynamic and visually-driven web experience tailored for EZ Cut Media to highlight their world-class media production and creative capabilities.",
+        image: '/portfolio/ezcutmedia.png',
+        link: 'https://www.ezcutmedia.com'
     },
     {
-        id: '2',
-        title: 'Idcube systems',
-        description: "Crafted IDCUBE's new website to heighten brand awareness and drive sales through compelling, strategically presented security solutions.",
-        image: '/portfolio/idcube.png'
+        id: '8',
+        title: 'Paratpara Satakam',
+        description: "A serene, beautifully structured website developed for Paratpara Satakam, focusing on cultural depth, easy navigation, and elegant aesthetics.",
+        image: '/portfolio/paratparasatakam.png',
+        link: 'https://www.paratparasatakam.com'
     },
     {
-        id: '3',
-        title: 'Livprotec',
-        description: "Crafted a sleek website to exhibit Livprotec's environmental solutions, highlighting their innovative approach using cutting-edge science.",
-        image: '/portfolio/livprotec.png'
+        id: '9',
+        title: 'Feedback India',
+        description: "A seamless and functional platform engineered for Feedback India to streamline user insights and data collection efficiently.",
+        image: '/portfolio/feedbackindia.png',
+        link: 'https://www.feedbackindia.in'
     },
     {
-        id: '4',
-        title: 'Resil',
-        description: "Designed a modern digital presence for Resil to communicate their material science innovations and global impact effectively.",
-        image: '/portfolio/resil.png'
+        id: '10',
+        title: 'Telugu Voice',
+        description: "A modern and engaging news portal designed for Telugu Voice, featuring robust content delivery and an intuitive reading experience.",
+        image: '/portfolio/teluguvoice.png',
+        link: 'https://www.teluguvoice.com'
     },
     {
-        id: '5',
-        title: 'CORD',
-        description: "Developed a comprehensive platform for CORD to streamline their community outreach programs and enhance donor engagement.",
-        image: '/portfolio/cord.png'
+        id: '11',
+        title: 'DavinciOps',
+        description: "A high-performance corporate site crafted for DavinciOps, showcasing their advanced cloud solutions and technical expertise.",
+        image: '/portfolio/davinciops.png',
+        link: 'https://www.davinciops.com'
     },
     {
-        id: '6',
-        title: 'Scalene',
-        description: "Built a robust corporate website for Scalene that reflects their leadership in energy and technology sectors with a professional aesthetic.",
-        image: '/portfolio/scalene.png'
+        id: '12',
+        title: 'Moody Mushrooms',
+        description: "An earthy, engaging e-commerce and informational hub dedicated to premium mushroom products with a seamless shopping experience.",
+        image: '/portfolio/moodymushrooms.png',
+        link: 'https://www.moodymushrooms.com'
     }
 ]
 
@@ -88,17 +94,19 @@ export function FeaturedWork() {
                             <div className="relative h-64 overflow-hidden bg-slate-100">
                                 {/* Using a placeholder gradient if image fails/is missing for now */}
                                 <div className="absolute inset-0 bg-gradient-to-br from-slate-200 to-slate-300 group-hover:scale-105 transition-transform duration-500" />
-                                {/* In a real scenario, use Image component:
-                                <Image 
-                                    src={project.image} 
-                                    alt={project.title}
-                                    fill
-                                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                                />
-                                */}
-                                <div className="absolute inset-0 flex items-center justify-center text-slate-400 font-medium">
-                                    {project.title} Preview
-                                </div>
+
+                                {project.image ? (
+                                    <Image
+                                        src={project.image}
+                                        alt={project.title}
+                                        fill
+                                        className="object-cover group-hover:scale-105 transition-transform duration-500 z-10"
+                                    />
+                                ) : (
+                                    <div className="absolute inset-0 flex items-center justify-center text-slate-400 font-medium z-10">
+                                        {project.title} Preview
+                                    </div>
+                                )}
                             </div>
 
                             {/* Content */}
@@ -110,12 +118,14 @@ export function FeaturedWork() {
                                     {project.description}
                                 </p>
 
-                                <div className="mt-auto pt-4">
-                                    <button className="text-sm font-semibold text-brand-primary flex items-center gap-2 group/btn">
-                                        View Case Study
-                                        <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                                    </button>
-                                </div>
+                                {project.link ? (
+                                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="inline-block mt-auto pt-4 group/link">
+                                        <span className="text-sm font-semibold text-brand-primary flex items-center gap-2">
+                                            Visit Website
+                                            <ArrowRight className="w-4 h-4 group-hover/link:-rotate-45 transition-transform" />
+                                        </span>
+                                    </a>
+                                ) : null}
                             </div>
                         </motion.div>
                     ))}

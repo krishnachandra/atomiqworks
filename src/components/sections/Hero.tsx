@@ -75,7 +75,7 @@ export function Hero() {
                             transition={{ duration: 0.5, delay: 0.25 }}
                             className="mb-8 flex items-center gap-2"
                         >
-                            <a href="#work" className="text-brand-primary font-bold text-lg hover:underline flex items-center gap-2 group">
+                            <a href="/work" className="text-brand-primary font-bold text-lg hover:underline flex items-center gap-2 group">
                                 Checkout our work here
                                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                             </a>

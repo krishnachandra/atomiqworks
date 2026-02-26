@@ -1,9 +1,66 @@
 'use client'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/Button'
 import { Mail, Phone, MapPin } from 'lucide-react'
 
 export function Contact() {
+    const [formData, setFormData] = useState({ name: '', email: '', company: '', message: '' })
+    const [isSubmitting, setIsSubmitting] = useState(false)
+    const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+    const MAX_CHARS = 200
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { id, value } = e.target
+        if (id === 'message') {
+            if (value.length <= MAX_CHARS) {
+                setFormData(prev => ({ ...prev, [id]: value }))
+            }
+        } else {
+            setFormData(prev => ({ ...prev, [id]: value }))
+        }
+    }
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault()
+        setSubmitStatus('idle')
+
+        // Basic Validation
+        if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+            alert('Please fill out all required fields.')
+            return
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        if (!emailRegex.test(formData.email)) {
+            alert('Please enter a valid email format.')
+            return
+        }
+
+        setIsSubmitting(true)
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            })
+
+            if (response.ok) {
+                setSubmitStatus('success')
+                setFormData({ name: '', email: '', company: '', message: '' }) // Reset form
+                setTimeout(() => setSubmitStatus('idle'), 5000) // Reset status after 5s
+            } else {
+                setSubmitStatus('error')
+            }
+        } catch (error) {
+            console.error('Submission error:', error)
+            setSubmitStatus('error')
+        } finally {
+            setIsSubmitting(false)
+        }
+    }
+
     return (
         <section id="contact" className="py-32 px-4 sm:px-6 lg:px-8 bg-white relative overflow-hidden">
             {/* Background Gradient */}
@@ -56,41 +113,47 @@ export function Contact() {
                     viewport={{ once: true }}
                     transition={{ delay: 0.3 }}
                 >
-                    <form className="space-y-6">
+                    <form onSubmit={handleSubmit} className="space-y-6">
                         <div className="grid md:grid-cols-2 gap-6">
                             <div>
                                 <label htmlFor="name" className="block text-sm font-semibold text-brand-dark mb-2">
-                                    Name *
+                                    Name <span className="text-red-500">*</span>
                                 </label>
                                 <input
                                     type="text"
                                     id="name"
+                                    value={formData.name}
+                                    onChange={handleChange}
                                     required
                                     className="w-full px-4 py-3 rounded-lg bg-white border border-slate-200 focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 outline-none transition-all"
-                                    placeholder="John Doe"
+                                    placeholder="Sachin Varma"
                                 />
                             </div>
                             <div>
                                 <label htmlFor="email" className="block text-sm font-semibold text-brand-dark mb-2">
-                                    Email *
+                                    Email <span className="text-red-500">*</span>
                                 </label>
                                 <input
                                     type="email"
                                     id="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
                                     required
                                     className="w-full px-4 py-3 rounded-lg bg-white border border-slate-200 focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 outline-none transition-all"
-                                    placeholder="john@company.com"
+                                    placeholder="sachin.varma@gmail.com"
                                 />
                             </div>
                         </div>
 
                         <div>
                             <label htmlFor="company" className="block text-sm font-semibold text-brand-dark mb-2">
-                                Company
+                                Company <span className="text-slate-400 font-normal">(optional)</span>
                             </label>
                             <input
                                 type="text"
                                 id="company"
+                                value={formData.company}
+                                onChange={handleChange}
                                 className="w-full px-4 py-3 rounded-lg bg-white border border-slate-200 focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 outline-none transition-all"
                                 placeholder="Your Company"
                             />
@@ -98,25 +161,44 @@ export function Contact() {
 
                         <div>
                             <label htmlFor="message" className="block text-sm font-semibold text-brand-dark mb-2">
-                                Tell us about your project *
+                                Tell us about your requirement <span className="text-red-500">*</span>
                             </label>
                             <textarea
                                 id="message"
+                                value={formData.message}
+                                onChange={handleChange}
                                 required
                                 rows={6}
+                                maxLength={MAX_CHARS}
                                 className="w-full px-4 py-3 rounded-lg bg-white border border-slate-200 focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 outline-none transition-all resize-none"
                                 placeholder="I'm looking for help with..."
                             />
+                            <div className="text-right text-xs text-slate-500 mt-2 font-medium">
+                                {formData.message.length}/{MAX_CHARS} characters allowed
+                            </div>
                         </div>
 
                         <Button
                             type="submit"
                             size="lg"
                             variant="primary"
-                            className="w-full md:w-auto"
+                            className="w-full md:w-auto mt-4 disabled:opacity-70 disabled:cursor-not-allowed"
+                            disabled={isSubmitting}
                         >
-                            Send Message
+                            {isSubmitting ? 'Sending...' : 'Send Message'}
                         </Button>
+
+                        {/* Status Messages */}
+                        {submitStatus === 'success' && (
+                            <div className="mt-4 p-4 text-sm text-green-700 bg-green-50 rounded-lg border border-green-200">
+                                Thank you! Your message has been sent successfully. We'll be in touch soon.
+                            </div>
+                        )}
+                        {submitStatus === 'error' && (
+                            <div className="mt-4 p-4 text-sm text-red-700 bg-red-50 rounded-lg border border-red-200">
+                                Oops! Something went wrong. Please try again later or reach out directly to atomiqworks@gmail.com.
+                            </div>
+                        )}
                     </form>
 
                     {/* Contact Info */}

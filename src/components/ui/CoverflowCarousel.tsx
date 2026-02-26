@@ -8,11 +8,10 @@ import Link from 'next/link'
 
 // --- REAL PORTFOLIO DATA ---
 const landscapes = [
-    { id: 1, title: "Krishna Portfolio", type: "Personal Branding", src: "/portfolio/krishna-new.png" },
-    { id: 2, title: "EZ Cut Media", type: "Video Production Agency", src: "/portfolio/ez-cut-new.png" },
-    { id: 3, title: "Stirling Interiors", type: "Corporate Interior Design", src: "/portfolio/stirling.png" },
-    { id: 4, title: "FooRor Events", type: "Event Management Platform", src: "/portfolio/fooror.png" },
-    { id: 5, title: "Jaeco", type: "Corporate Team Page", src: "/portfolio/jaeco.png" }
+    { id: 1, title: "EZ Cut Media", type: "Visual Experience", src: "/portfolio/ezcutmedia.png" },
+    { id: 2, title: "Paratpara Satakam", type: "Cultural Website", src: "/portfolio/paratparasatakam.png" },
+    { id: 3, title: "DavinciOps", type: "Corporate Site", src: "/portfolio/davinciops.png" },
+    { id: 4, title: "Moody Mushrooms", type: "E-commerce", src: "/portfolio/moodymushrooms.png" }
 ]
 
 export const CoverflowCarousel = () => {
