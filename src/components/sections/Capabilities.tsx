@@ -29,7 +29,7 @@ const capabilities = [
 
 export function Capabilities() {
     return (
-        <section id="capabilities" className="py-32 px-4 sm:px-6 lg:px-8 bg-brand-light relative overflow-hidden">
+        <section id="why-us" className="py-32 px-4 sm:px-6 lg:px-8 bg-brand-light relative overflow-hidden">
             {/* Background Elements */}
             <div className="absolute top-20 right-[-10%] w-96 h-96 bg-brand-secondary/5 rounded-full blur-3xl pointer-events-none" />
 
