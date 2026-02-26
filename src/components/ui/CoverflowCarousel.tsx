@@ -143,20 +143,20 @@ export const CoverflowCarousel = () => {
                 onTouchEnd={handleTouchEnd}
             >
 
-                {/* Navigation Arrows (Hidden on Mobile for cleaner look, swipe enabled) */}
-                <div className="hidden md:flex absolute inset-0 items-center justify-center pointer-events-none z-[60]">
-                    <div className="w-[850px] flex justify-between px-4">
+                {/* Navigation Arrows */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-[60]">
+                    <div className="w-full max-w-[850px] flex justify-between px-2 md:px-4">
                         <button
                             onClick={prevSlide}
-                            className="w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-xl hover:scale-105 transition-transform pointer-events-auto text-brand-dark"
+                            className="w-10 h-10 md:w-12 md:h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-xl hover:scale-105 transition-transform pointer-events-auto text-brand-dark"
                         >
-                            <ChevronLeft className="w-8 h-8" strokeWidth={1.5} />
+                            <ChevronLeft className="w-6 h-6 md:w-8 md:h-8" strokeWidth={1.5} />
                         </button>
                         <button
                             onClick={nextSlide}
-                            className="w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-xl hover:scale-105 transition-transform pointer-events-auto text-brand-dark"
+                            className="w-10 h-10 md:w-12 md:h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-xl hover:scale-105 transition-transform pointer-events-auto text-brand-dark"
                         >
-                            <ChevronRight className="w-8 h-8" strokeWidth={1.5} />
+                            <ChevronRight className="w-6 h-6 md:w-8 md:h-8" strokeWidth={1.5} />
                         </button>
                     </div>
                 </div>

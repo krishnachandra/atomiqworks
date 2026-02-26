@@ -74,7 +74,7 @@ export function Footer() {
                     <ul className="space-y-4">
                         {sections.expertise.map((item) => (
                             <li key={item}>
-                                <Link href="/#capabilities" className="text-gray-400 hover:text-white text-sm transition-colors hover:translate-x-1 inline-block duration-200">{item}</Link>
+                                <span className="text-gray-400 text-sm">{item}</span>
                             </li>
                         ))}
                     </ul>
