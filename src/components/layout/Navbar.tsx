@@ -30,7 +30,7 @@ export function Navbar() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between pointer-events-auto relative">
                 <Link href="/" className="flex items-center gap-3 group w-auto shrink-0 relative pointer-events-auto">
                     <AtomiqLogo size={32} className="group-hover:scale-110 transition-transform duration-300" />
-                    <span className="hidden sm:inline-block text-2xl tracking-tight">
+                    <span className="inline-block text-2xl tracking-tight">
                         <span className="font-semibold text-brand-dark">AtomIQ</span><span className="font-bold text-brand-primary">Works</span>
                     </span>
                 </Link>
