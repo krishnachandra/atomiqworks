@@ -24,7 +24,7 @@ export function FloatingChatbot() {
     }
 
     return (
-        <div className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 flex flex-col items-end">
+        <div className="fixed bottom-24 right-6 md:bottom-28 md:right-8 z-50 flex flex-col items-end">
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
