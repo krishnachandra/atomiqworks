@@ -15,8 +15,8 @@ export default function Home() {
       <Navbar />
       <Hero />
       <StatsBanner />
-      <Capabilities />
       <Process />
+      <Capabilities />
       <TrustSignals />
       <Contact />
       <Footer />
