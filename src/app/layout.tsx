@@ -16,32 +16,32 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "AtomIQ Works | Premium Digital Product Agency",
-    template: "%s | AtomIQ Works"
+    default: "AtomIQWorks | Premium Digital Product Agency",
+    template: "%s | AtomIQWorks"
   },
-  description: "Engineering the Future of Digital. AtomIQ Works builds scalable, high-performance digital experiences, web apps, and AI solutions for ambitious brands.",
+  description: "Engineering the Future of Digital. AtomIQWorks builds scalable, high-performance digital experiences, web apps, and AI solutions for ambitious brands.",
   keywords: ["Digital Agency", "Web Development", "AI Solutions", "App Development", "UX/UI Design", "High Performance Web", "React", "Next.js", "India"],
-  authors: [{ name: "AtomIQ Works Team" }],
-  creator: "AtomIQ Works",
-  publisher: "AtomIQ Works",
+  authors: [{ name: "AtomIQWorks Team" }],
+  creator: "AtomIQWorks",
+  publisher: "AtomIQWorks",
   metadataBase: new URL('https://atomiqworks.com'), // Replace with actual domain when live
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://atomiqworks.com",
-    siteName: "AtomIQ Works",
-    title: "AtomIQ Works | Engineering the Future of Digital",
+    siteName: "AtomIQWorks",
+    title: "AtomIQWorks | Engineering the Future of Digital",
     description: "We build scalable, high-performance digital experiences for ambitious brands. Specialized in Next.js, AI integration, and premium UI/UX.",
     images: [{
       url: "/atomiq-logo.png", // We generated this earlier
       width: 512,
       height: 512,
-      alt: "AtomIQ Works Logo",
+      alt: "AtomIQWorks Logo",
     }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "AtomIQ Works | Premium Digital Product Agency",
+    title: "AtomIQWorks | Premium Digital Product Agency",
     description: "Engineering the Future of Digital. We build scalable, high-performance digital experiences.",
     images: ["/atomiq-logo.png"],
     creator: "@atomiqworks",
@@ -68,9 +68,9 @@ export default function RootLayout({
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "name": "AtomIQ Works",
+    "name": "AtomIQWorks",
     "image": "https://atomiqworks.com/atomiq-logo.png",
-    "description": "AtomIQ Works is a premium digital product agency engineering scalable, high-performance experiences.",
+    "description": "AtomIQWorks is a premium digital product agency engineering scalable, high-performance experiences.",
     "address": {
       "@type": "PostalAddress",
       "addressCountry": "IN",

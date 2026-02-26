@@ -6,7 +6,7 @@ export function StatsBanner() {
         { label: "Successful Projects", value: "150+" },
         { label: "Active Clients", value: "100+" },
         { label: "Success Rate", value: "100%" },
-        { label: "Years Experience", value: "12+" }
+        { label: "Years Experience", value: "18+" }
     ]
 
     return (

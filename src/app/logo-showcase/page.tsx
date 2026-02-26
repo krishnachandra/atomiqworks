@@ -54,8 +54,10 @@ export default function LogoShowcasePage() {
             <div className="flex flex-col md:flex-row gap-16 md:gap-32 items-center justify-center w-full max-w-7xl">
                 {/* Original Logo Section */}
                 <div className="flex flex-col items-center gap-8">
-                    <div ref={originalLogoRef} className="p-12 bg-white rounded-3xl" style={{ backgroundColor: 'white' }}>
-                        <AtomiqLogo size={250} className="scale-[1]" />
+                    <div className="p-12 bg-white rounded-3xl" style={{ backgroundColor: 'white' }}>
+                        <div ref={originalLogoRef} className="inline-flex">
+                            <AtomiqLogo size={250} className="scale-[1]" />
+                        </div>
                     </div>
 
                     <button
@@ -74,8 +76,10 @@ export default function LogoShowcasePage() {
 
                 {/* Neon Logo Section */}
                 <div className="flex flex-col items-center gap-8">
-                    <div ref={neonLogoRef} className="p-12 bg-neutral-950 rounded-3xl border border-neutral-800" style={{ backgroundColor: '#0a0a0a' }}>
-                        <NeonAtomiqLogo size={250} className="scale-[1]" />
+                    <div className="p-12 bg-neutral-950 rounded-3xl border border-neutral-800" style={{ backgroundColor: '#0a0a0a' }}>
+                        <div ref={neonLogoRef} className="inline-flex">
+                            <NeonAtomiqLogo size={250} className="scale-[1]" />
+                        </div>
                     </div>
 
                     <button

@@ -29,16 +29,8 @@ export function Footer() {
                 <div className="space-y-8">
                     {/* Brand */}
                     <Link href="/" className="flex items-center gap-3 group">
-                        <AtomiqLogo size={40} className="group-hover:scale-110 transition-transform duration-300" colors={{
-                            nucleus: { from: 'from-white', to: 'to-slate-300' },
-                            continent: 'transparent',
-                            electrons: [
-                                { light: '#ffffff', main: '#e2e8f0', dark: '#94a3b8' },
-                                { light: '#ffffff', main: '#e2e8f0', dark: '#94a3b8' },
-                                { light: '#ffffff', main: '#e2e8f0', dark: '#94a3b8' }
-                            ]
-                        }} />
-                        <span className="text-2xl font-bold tracking-tight">AtomIQ Works</span>
+                        <AtomiqLogo size={40} className="group-hover:scale-110 transition-transform duration-300" />
+                        <span className="text-2xl font-bold tracking-tight">AtomIQWorks</span>
                     </Link>
                     <p className="text-gray-400 text-sm leading-relaxed max-w-sm">
                         AtomIQ Works is a premium digital product agency, engineering scalable, high-performance experiences for ambitious brands worldwide.

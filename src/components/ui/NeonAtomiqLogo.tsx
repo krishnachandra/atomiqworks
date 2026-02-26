@@ -29,7 +29,7 @@ export function NeonAtomiqLogo({ size = 32, className = '' }: NeonAtomiqLogoProp
     }, [size]);
 
     const neonGlow = "drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] drop-shadow-[0_0_12px_rgba(59,130,246,0.6)] drop-shadow-[0_0_20px_rgba(59,130,246,0.4)]";
-    const electronGlow = (color: string) => `drop-shadow-[0_0_8px_rgba(255,255,255,0.9)] drop-shadow-[0_0_15px_${color}]`;
+    const electronGlow = (color: string) => `drop-shadow-[0_0_8px_${color}] drop-shadow-[0_0_20px_${color}]`;
 
     return (
         <div
@@ -44,19 +44,19 @@ export function NeonAtomiqLogo({ size = 32, className = '' }: NeonAtomiqLogoProp
                 {/* Orbit 1 Path (Vertical 90°) */}
                 <div className="absolute inset-0" style={{ transform: 'rotate(90deg)' }}>
                     <svg viewBox={`0 0 ${containerSize} ${containerSize}`} className={`absolute inset-0 ${neonGlow}`}>
-                        <ellipse cx={containerSize / 2} cy={containerSize / 2} rx={orbitRadiusX} ry={orbitRadiusY} fill="none" stroke="#60a5fa" strokeWidth="2.5" />
+                        <ellipse cx={containerSize / 2} cy={containerSize / 2} rx={orbitRadiusX} ry={orbitRadiusY} fill="none" stroke="#60a5fa" strokeWidth="1" />
                     </svg>
                 </div>
                 {/* Orbit 2 Path (Diagonal 30°) */}
                 <div className="absolute inset-0" style={{ transform: 'rotate(30deg)' }}>
                     <svg viewBox={`0 0 ${containerSize} ${containerSize}`} className={`absolute inset-0 ${neonGlow}`}>
-                        <ellipse cx={containerSize / 2} cy={containerSize / 2} rx={orbitRadiusX} ry={orbitRadiusY} fill="none" stroke="#60a5fa" strokeWidth="2.5" />
+                        <ellipse cx={containerSize / 2} cy={containerSize / 2} rx={orbitRadiusX} ry={orbitRadiusY} fill="none" stroke="#60a5fa" strokeWidth="1" />
                     </svg>
                 </div>
                 {/* Orbit 3 Path (Diagonal -30°) */}
                 <div className="absolute inset-0" style={{ transform: 'rotate(-30deg)' }}>
                     <svg viewBox={`0 0 ${containerSize} ${containerSize}`} className={`absolute inset-0 ${neonGlow}`}>
-                        <ellipse cx={containerSize / 2} cy={containerSize / 2} rx={orbitRadiusX} ry={orbitRadiusY} fill="none" stroke="#60a5fa" strokeWidth="2.5" />
+                        <ellipse cx={containerSize / 2} cy={containerSize / 2} rx={orbitRadiusX} ry={orbitRadiusY} fill="none" stroke="#60a5fa" strokeWidth="1" />
                     </svg>
                 </div>
             </div>
@@ -83,7 +83,7 @@ export function NeonAtomiqLogo({ size = 32, className = '' }: NeonAtomiqLogoProp
                 {/* Electron 1 (Vertical 90°) - Orange */}
                 <div className="absolute inset-0" style={{ transform: 'rotate(90deg)' }}>
                     <div
-                        className={`absolute rounded-full border border-white ${electronGlow('rgba(249,115,22,0.8)')}`}
+                        className={`absolute rounded-full ${electronGlow('rgba(249,115,22,0.8)')}`}
                         style={{
                             width: `${electronSize}px`,
                             height: `${electronSize}px`,
@@ -94,14 +94,14 @@ export function NeonAtomiqLogo({ size = 32, className = '' }: NeonAtomiqLogoProp
                             background: `linear-gradient(135deg, #fcd980, #fba721, #d68a15)`
                         }}
                     >
-                        <div className="absolute inset-0 rounded-full" style={{ background: 'linear-gradient(to bottom right, rgba(255,255,255,0.6), transparent)' }} />
+                        <div className="absolute inset-0 rounded-full" style={{ background: 'linear-gradient(to bottom right, rgba(255,255,255,0.4), transparent)' }} />
                     </div>
                 </div>
 
                 {/* Electron 2 (Diagonal 30°) - Teal */}
                 <div className="absolute inset-0" style={{ transform: 'rotate(30deg)' }}>
                     <div
-                        className={`absolute rounded-full border border-white ${electronGlow('rgba(20,184,166,0.8)')}`}
+                        className={`absolute rounded-full ${electronGlow('rgba(20,184,166,0.8)')}`}
                         style={{
                             width: `${electronSize}px`,
                             height: `${electronSize}px`,
@@ -112,14 +112,14 @@ export function NeonAtomiqLogo({ size = 32, className = '' }: NeonAtomiqLogoProp
                             background: `linear-gradient(135deg, #4fdcd0, #1db9a4, #148f7f)`
                         }}
                     >
-                        <div className="absolute inset-0 rounded-full" style={{ background: 'linear-gradient(to bottom right, rgba(255,255,255,0.6), transparent)' }} />
+                        <div className="absolute inset-0 rounded-full" style={{ background: 'linear-gradient(to bottom right, rgba(255,255,255,0.4), transparent)' }} />
                     </div>
                 </div>
 
                 {/* Electron 3 (Diagonal -30°) - Green */}
                 <div className="absolute inset-0" style={{ transform: 'rotate(-30deg)' }}>
                     <div
-                        className={`absolute rounded-full border border-white ${electronGlow('rgba(132,204,22,0.8)')}`}
+                        className={`absolute rounded-full ${electronGlow('rgba(132,204,22,0.8)')}`}
                         style={{
                             width: `${electronSize}px`,
                             height: `${electronSize}px`,
@@ -130,7 +130,7 @@ export function NeonAtomiqLogo({ size = 32, className = '' }: NeonAtomiqLogoProp
                             background: `linear-gradient(135deg, #c2e66e, #a2cc46, #7fa332)`
                         }}
                     >
-                        <div className="absolute inset-0 rounded-full" style={{ background: 'linear-gradient(to bottom right, rgba(255,255,255,0.6), transparent)' }} />
+                        <div className="absolute inset-0 rounded-full" style={{ background: 'linear-gradient(to bottom right, rgba(255,255,255,0.4), transparent)' }} />
                     </div>
                 </div>
             </div>
