@@ -24,7 +24,7 @@ export function FloatingChatbot() {
     }
 
     return (
-        <div className="fixed bottom-16 right-6 z-50 flex flex-col items-end">
+        <div className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 flex flex-col items-end">
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
@@ -86,7 +86,7 @@ export function FloatingChatbot() {
                 onClick={() => setIsOpen(!isOpen)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-14 h-14 bg-brand-primary text-white rounded-full shadow-lg flex items-center justify-center hover:bg-brand-primary/90 transition-all hover:shadow-brand-primary/25"
+                className="w-12 h-12 bg-brand-primary text-white rounded-full shadow-lg flex items-center justify-center hover:bg-brand-primary/90 transition-all hover:shadow-brand-primary/25"
             >
                 <AnimatePresence mode="wait">
                     {isOpen ? (
