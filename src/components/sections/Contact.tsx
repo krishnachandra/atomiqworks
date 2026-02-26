@@ -75,14 +75,6 @@ export function Contact() {
 
             <div className="max-w-4xl mx-auto relative z-10">
                 <div className="text-center mb-12">
-                    <motion.span
-                        className="text-brand-primary font-semibold text-sm tracking-widest uppercase mb-4 block"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                    >
-                        Let's Talk
-                    </motion.span>
                     <motion.h2
                         className="text-4xl md:text-6xl font-bold text-brand-dark mb-6"
                         initial={{ opacity: 0, y: 20 }}

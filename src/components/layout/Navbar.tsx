@@ -35,21 +35,27 @@ export function Navbar() {
                     </span>
                 </Link>
 
+                {/* Desktop Navigation */}
                 <div className="hidden md:flex items-center gap-8 relative pointer-events-auto">
                     {navLinks.map((link) => (
                         <Link
                             key={link.href}
                             href={link.href}
-                            className="relative text-sm font-medium text-slate-600 hover:text-brand-primary transition-colors cursor-pointer block group"
+                            className="text-sm font-medium text-slate-600 hover:text-brand-primary transition-colors cursor-pointer block"
                             onClick={() => setMobileMenuOpen(false)}
                         >
                             {link.label}
-                            <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-brand-primary transition-all duration-300 group-hover:w-full"></span>
                         </Link>
                     ))}
                 </div>
 
                 <div className="flex items-center gap-4 relative pointer-events-auto">
+                    <Link href="/#contact" className="hidden sm:inline-flex" onClick={() => setMobileMenuOpen(false)}>
+                        <Button variant="primary" size="sm" className="cursor-pointer">
+                            Let's Talk
+                        </Button>
+                    </Link>
+
                     {/* Mobile Menu Button */}
                     <button
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -75,6 +81,11 @@ export function Navbar() {
                                 {link.label}
                             </Link>
                         ))}
+                        <Link href="/#contact" className="w-full block" onClick={() => setMobileMenuOpen(false)}>
+                            <Button variant="primary" size="md" className="w-full cursor-pointer">
+                                Let's Talk
+                            </Button>
+                        </Link>
                     </div>
                 </div>
             )}
