@@ -30,6 +30,17 @@ export function TrustSignals() {
             <div className="max-w-7xl mx-auto">
                 {/* Testimonials */}
                 <div className="mb-24">
+                    <div className="text-center mb-16">
+                        <motion.h2
+                            className="text-4xl md:text-5xl font-bold text-brand-dark"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.1 }}
+                        >
+                            What Our Clients Think?
+                        </motion.h2>
+                    </div>
                     <div className="grid md:grid-cols-3 gap-6">
                         {testimonials.map((testimonial, idx) => (
                             <motion.div
