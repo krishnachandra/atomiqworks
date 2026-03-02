@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>atomIQworks - Micro Landing Business Card</title>
+    <!-- External stylesheet option -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div class="cards-container">
+        <!-- FRONT VIEW -->
+        <div class="card-view">
+            <h2 class="view-title">Front</h2>
+            <article class="micro-card layout-stack" id="cardElement" aria-label="atomIQworks Business Card Front">
+                <!-- Browser Chrome -->
+                <header class="chrome-bar" aria-hidden="true">
+                    <div class="chrome-dots">
+                        <div class="dot close"></div>
+                        <div class="dot min"></div>
+                        <div class="dot max"></div>
+                    </div>
+                    <div class="url-bar" id="urlText">www.atomiqworks.com</div>
+                </header>
+
+                <!-- Main Branding Content Area -->
+                <main class="card-content">
+                    <div class="branding" id="brandingGroup">
+                        <!-- Logo -->
+                        <div class="logo-container" aria-hidden="true">
+                            <img src="atom-logo.png" alt="AtomIQWorks Logo" width="100%" height="100%" />
+                        </div>
+                        <!-- Wordmark -->
+                        <h1 class="wordmark">AtomIQ<span class="works">Works</span></h1>
+                        <p class="tagline">Building what matters</p>
+                        <p class="we-create">We create</p>
+                    </div>
+
+                    <!-- Labels -->
+                    <div class="creation-labels" aria-label="Expertise">
+                        <span class="creation-tag tag-websites">Websites</span>
+                        <span class="creation-tag tag-apps">Apps</span>
+                        <span class="creation-tag tag-tools">Tools</span>
+                        <span class="creation-tag tag-saas">SAAS</span>
+                    </div>
+                </main>
+
+                <!-- Inspect Overlay -->
+                <div id="inspectOverlay" class="inspect-overlay" aria-hidden="true">
+                    <span class="inspect-tag">3.35" x 2.17"</span>
+                </div>
+            </article>
+        </div>
+
+        <!-- BACK VIEW -->
+        <div class="card-view">
+            <h2 class="view-title">Back</h2>
+            <article class="micro-card back-side" id="cardBackElement" aria-label="atomIQworks Business Card Back">
+                <!-- Browser Chrome -->
+                <header class="chrome-bar" aria-hidden="true">
+                    <div class="chrome-dots">
+                        <div class="dot close"></div>
+                        <div class="dot min"></div>
+                        <div class="dot max"></div>
+                    </div>
+                    <div class="url-bar">/ContactInfo</div>
+                </header>
+
+                <main class="card-content">
+                    <div class="contact-layout">
+                        <!-- Info Section -->
+                        <div class="contact-info">
+                            <div class="stats-container">
+                                <div class="stat-pill-group">
+                                    <div class="stat-pill">150+</div>
+                                    <span class="stat-label">Projects Delivered</span>
+                                </div>
+                                <div class="stat-pill-group">
+                                    <div class="stat-pill">18+</div>
+                                    <span class="stat-label">Years Experience</span>
+                                </div>
+                            </div>
+
+                            <div class="contact-links">
+                                <span class="link-item">www.atomiqworks.com</span>
+                                <span class="link-item">atomiqworks@gmail.com</span>
+                                <span class="link-item">+91-8074535932</span>
+                            </div>
+                        </div>
+
+                        <!-- QR Section for Innovation vibe -->
+                        <div class="qr-placeholder" aria-hidden="true">
+                            <div class="qr-code">
+                                <img src="qr-code.png" alt="Scan to connect" width="48" height="48"
+                                    style="object-fit: contain;">
+                            </div>
+                            <div class="qr-wordmark">AtomIQ<span class="works">Works</span></div>
+                            <p class="tagline qr-tagline">Building what matters</p>
+                        </div>
+                    </div>
+                </main>
+            </article>
+        </div>
+    </div>
+
+    <!-- Demo Environment Controls -->
+    <nav class="demo-controls" aria-label="Demo controls">
+        <button class="ctrl-btn" onclick="toggleTheme()" title="Toggle Light/Dark Theme">🌓 Theme</button>
+        <button class="ctrl-btn" onclick="toggleLayout()" title="Switch layout axis (Stack / Compact)">📐
+            Layout</button>
+        <button class="ctrl-btn" onclick="toggleUrl()" title="Toggle URL bar text">🔗 URL</button>
+        <button class="ctrl-btn" onclick="toggleInspect()" title="Developer CSS Inspector Overlay">🔎 Inspect</button>
+        <button class="ctrl-btn" onclick="downloadPreview()" title="Download 2x PNG">📸 Save 2x PNG</button>
+    </nav>
+
+    <!-- html-to-image for capturing the card -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.11/html-to-image.min.js"></script>
+
+    <script>
+        const htmlEl = document.documentElement;
+        const cardEl = document.getElementById('cardElement');
+        const cardBackEl = document.getElementById('cardBackElement');
+        const urlText = document.getElementById('urlText');
+        const inspectOverlay = document.getElementById('inspectOverlay');
+
+        let isDark = false;
+        let isCompact = false;
+        let isPreviewMode = false;
+
+        function toggleTheme() {
+            isDark = !isDark;
+            htmlEl.setAttribute('data-theme', isDark ? 'dark' : 'light');
+        }
+
+        function toggleLayout() {
+            isCompact = !isCompact;
+            const container = document.querySelector('.cards-container');
+            if (isCompact) {
+                container.classList.add('compact-view');
+            } else {
+                container.classList.remove('compact-view');
+            }
+        }
+
+        function toggleUrl() {
+            isPreviewMode = !isPreviewMode;
+            urlText.textContent = isPreviewMode ? "preview mode" : "www.atomiqworks.com";
+        }
+
+        function toggleInspect() {
+            inspectOverlay.classList.toggle('active');
+        }
+
+        async function downloadPreview() {
+            try {
+                const container = document.querySelector('.cards-container');
+                const scale = 2;
+                const rect = container.getBoundingClientRect();
+
+                const dataUrl = await htmlToImage.toPng(container, {
+                    pixelRatio: scale,
+                    style: {
+                        transform: `scale(${scale})`,
+                        transformOrigin: 'top left',
+                        width: `${rect.width}px`,
+                        height: `${rect.height}px`
+                    },
+                    width: rect.width * scale,
+                    height: rect.height * scale
+                });
+
+                const link = document.createElement('a');
+                link.download = 'atomiq-business-card-preview@2x.png';
+                link.href = dataUrl;
+                link.click();
+            } catch (error) {
+                console.error('Error generating image!', error);
+                alert("Failed to capture preview.");
+            }
+        }
+    </script>
+</body>
+
+</html>

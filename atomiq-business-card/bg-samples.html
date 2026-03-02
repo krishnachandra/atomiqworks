@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Card Background Samples</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Inter:wght@400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --card-surface: #F7FAFC;
+            --text-main: #0b1330;
+            --text-muted: #64748b;
+            --accent: #00C2A8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #0f172a;
+            color: #e2e8f0;
+            font-family: 'Inter', sans-serif;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #00C2A8, #4338CA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #94a3b8;
+            font-size: 14px;
+            margin-bottom: 48px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 40px;
+            max-width: 1500px;
+            margin: 0 auto;
+        }
+
+        .sample {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .sample-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #cbd5e1;
+            letter-spacing: 0.3px;
+        }
+
+        .sample-desc {
+            font-size: 11px;
+            color: #64748b;
+            text-align: center;
+            max-width: 300px;
+            line-height: 1.4;
+        }
+
+        /* -- Card Shell -- */
+        .card {
+            width: 322px;
+            height: 208px;
+            border-radius: 24px;
+            background-color: var(--card-surface);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.4), 0 0 0 2px var(--accent);
+        }
+
+        .chrome-bar {
+            height: 14%;
+            min-height: 24px;
+            background-color: #e2e8f0;
+            border-bottom: 1px solid #cbd5e1;
+            display: flex;
+            align-items: center;
+            padding: 0 12px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .chrome-dots {
+            display: flex;
+            gap: 4px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .dot.close {
+            background: #ef4444;
+        }
+
+        .dot.min {
+            background: #f59e0b;
+        }
+
+        .dot.max {
+            background: #22c55e;
+        }
+
+        .url-bar {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: #94a3b8;
+        }
+
+        .card-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 5% 8%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .branding {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 8%;
+        }
+
+        .wordmark {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--text-main);
+        }
+
+        .wordmark .works {
+            color: #4338CA;
+        }
+
+        .tagline {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+        }
+
+        .cta-pill {
+            width: 70%;
+            height: 26px;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: 9999px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* The background pattern layer */
+        .bg-pattern {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            border-radius: 0 0 24px 24px;
+            pointer-events: none;
+        }
+
+        .card-content {
+            z-index: 1;
+        }
+
+        /* ==========================================
+           20 BACKGROUND PATTERN VARIATIONS
+           ========================================== */
+
+        /* 1. Fine Dot Grid */
+        .bg-1 {
+            background-image: radial-gradient(circle, #c8d0dc 0.6px, transparent 0.6px);
+            background-size: 14px 14px;
+            opacity: 0.5;
+        }
+
+        /* 2. Blueprint Grid */
+        .bg-2 {
+            background-image:
+                linear-gradient(rgba(67, 56, 202, 0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(67, 56, 202, 0.06) 1px, transparent 1px);
+            background-size: 16px 16px;
+        }
+
+        /* 3. Diagonal Lines */
+        .bg-3 {
+            background-image: repeating-linear-gradient(45deg,
+                    transparent,
+                    transparent 10px,
+                    rgba(0, 194, 168, 0.04) 10px,
+                    rgba(0, 194, 168, 0.04) 11px);
+        }
+
+        /* 4. Hexagonal Honeycomb (approx) */
+        .bg-4 {
+            background-color: transparent;
+            background-image:
+                radial-gradient(circle farthest-side at 0% 50%, transparent 23%, rgba(67, 56, 202, 0.04) 24%, rgba(67, 56, 202, 0.04) 30%, transparent 31%),
+                radial-gradient(circle farthest-side at 0% 50%, transparent 23%, rgba(67, 56, 202, 0.04) 24%, rgba(67, 56, 202, 0.04) 30%, transparent 31%);
+            background-size: 20px 34px;
+            background-position: 0 0, 10px 17px;
+        }
+
+        /* 5. Crosshatch */
+        .bg-5 {
+            background-image:
+                repeating-linear-gradient(0deg, transparent, transparent 14px, rgba(0, 0, 0, 0.03) 14px, rgba(0, 0, 0, 0.03) 15px),
+                repeating-linear-gradient(90deg, transparent, transparent 14px, rgba(0, 0, 0, 0.03) 14px, rgba(0, 0, 0, 0.03) 15px);
+        }
+
+        /* 6. Teal Gradient Mesh */
+        .bg-6 {
+            background:
+                radial-gradient(ellipse at 20% 80%, rgba(0, 194, 168, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(67, 56, 202, 0.06) 0%, transparent 50%);
+        }
+
+        /* 7. Concentric Circles (Innovation/Tech) */
+        .bg-7 {
+            background-image:
+                radial-gradient(circle at 50% 50%, transparent 30%, rgba(0, 194, 168, 0.03) 31%, rgba(0, 194, 168, 0.03) 32%, transparent 33%),
+                radial-gradient(circle at 50% 50%, transparent 50%, rgba(0, 194, 168, 0.03) 51%, rgba(0, 194, 168, 0.03) 52%, transparent 53%),
+                radial-gradient(circle at 50% 50%, transparent 70%, rgba(0, 194, 168, 0.03) 71%, rgba(0, 194, 168, 0.03) 72%, transparent 73%),
+                radial-gradient(circle at 50% 50%, transparent 90%, rgba(0, 194, 168, 0.02) 91%, rgba(0, 194, 168, 0.02) 92%, transparent 93%);
+        }
+
+        /* 8. Circuit Board Lines */
+        .bg-8 {
+            background-image:
+                linear-gradient(90deg, rgba(67, 56, 202, 0.05) 1px, transparent 1px),
+                linear-gradient(rgba(67, 56, 202, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 194, 168, 0.03) 1px, transparent 1px),
+                linear-gradient(rgba(0, 194, 168, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px, 40px 40px, 8px 8px, 8px 8px;
+        }
+
+        /* 9. Diamond/Argyle Pattern */
+        .bg-9 {
+            background-image:
+                linear-gradient(45deg, rgba(0, 194, 168, 0.04) 25%, transparent 25%),
+                linear-gradient(-45deg, rgba(0, 194, 168, 0.04) 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, rgba(0, 194, 168, 0.04) 75%),
+                linear-gradient(-45deg, transparent 75%, rgba(0, 194, 168, 0.04) 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+        }
+
+        /* 10. Soft Bokeh / Orbs */
+        .bg-10 {
+            background:
+                radial-gradient(circle at 15% 30%, rgba(0, 194, 168, 0.07) 0%, transparent 40%),
+                radial-gradient(circle at 85% 70%, rgba(67, 56, 202, 0.07) 0%, transparent 40%),
+                radial-gradient(circle at 50% 90%, rgba(239, 68, 68, 0.04) 0%, transparent 35%),
+                radial-gradient(circle at 70% 20%, rgba(0, 194, 168, 0.05) 0%, transparent 30%);
+        }
+
+        /* 11. Topography Lines */
+        .bg-11 {
+            background-image:
+                radial-gradient(ellipse at 30% 50%, transparent 40%, rgba(0, 194, 168, 0.04) 41%, rgba(0, 194, 168, 0.04) 42%, transparent 43%),
+                radial-gradient(ellipse at 70% 40%, transparent 30%, rgba(67, 56, 202, 0.04) 31%, rgba(67, 56, 202, 0.04) 32%, transparent 33%),
+                radial-gradient(ellipse at 50% 70%, transparent 50%, rgba(0, 194, 168, 0.03) 51%, rgba(0, 194, 168, 0.03) 52%, transparent 53%);
+        }
+
+        /* 12. Isometric Grid */
+        .bg-12 {
+            background-image:
+                linear-gradient(30deg, rgba(67, 56, 202, 0.04) 12%, transparent 12.5%, transparent 87%, rgba(67, 56, 202, 0.04) 87.5%),
+                linear-gradient(150deg, rgba(67, 56, 202, 0.04) 12%, transparent 12.5%, transparent 87%, rgba(67, 56, 202, 0.04) 87.5%),
+                linear-gradient(30deg, rgba(67, 56, 202, 0.04) 12%, transparent 12.5%, transparent 87%, rgba(67, 56, 202, 0.04) 87.5%),
+                linear-gradient(150deg, rgba(67, 56, 202, 0.04) 12%, transparent 12.5%, transparent 87%, rgba(67, 56, 202, 0.04) 87.5%),
+                linear-gradient(60deg, rgba(0, 194, 168, 0.03) 25%, transparent 25.5%, transparent 75%, rgba(0, 194, 168, 0.03) 75%),
+                linear-gradient(60deg, rgba(0, 194, 168, 0.03) 25%, transparent 25.5%, transparent 75%, rgba(0, 194, 168, 0.03) 75%);
+            background-size: 24px 42px;
+            background-position: 0 0, 0 0, 12px 21px, 12px 21px, 0 0, 12px 21px;
+        }
+
+        /* 13. Plus Signs / Swiss-style */
+        .bg-13 {
+            background-image:
+                linear-gradient(rgba(0, 194, 168, 0.08) 2px, transparent 2px),
+                linear-gradient(90deg, rgba(0, 194, 168, 0.08) 2px, transparent 2px);
+            background-size: 6px 6px;
+            background-position: center center;
+            -webkit-mask-image: radial-gradient(circle, black 0%, transparent 70%);
+            mask-image: radial-gradient(circle, black 0%, transparent 70%);
+        }
+
+        /* 14. Noise + Gradient overlay */
+        .bg-14 {
+            background:
+                radial-gradient(ellipse at 50% 0%, rgba(0, 194, 168, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 50% 100%, rgba(67, 56, 202, 0.06) 0%, transparent 60%);
+            filter: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3C/svg%3E#n");
+            opacity: 0.6;
+        }
+
+        /* 15. Subtle Chevrons */
+        .bg-15 {
+            background-image:
+                linear-gradient(135deg, rgba(0, 194, 168, 0.04) 25%, transparent 25%),
+                linear-gradient(225deg, rgba(0, 194, 168, 0.04) 25%, transparent 25%),
+                linear-gradient(315deg, rgba(0, 194, 168, 0.04) 25%, transparent 25%),
+                linear-gradient(45deg, rgba(0, 194, 168, 0.04) 25%, transparent 25%);
+            background-size: 24px 12px;
+            background-position: 0 0, 12px 0, 12px -6px, 0 6px;
+        }
+
+        /* 16. Horizontal Scan Lines */
+        .bg-16 {
+            background-image: repeating-linear-gradient(0deg,
+                    transparent,
+                    transparent 3px,
+                    rgba(0, 0, 0, 0.015) 3px,
+                    rgba(0, 0, 0, 0.015) 4px);
+        }
+
+        /* 17. Radial Sunburst */
+        .bg-17 {
+            background-image: repeating-conic-gradient(from 0deg at 50% 120%,
+                    transparent 0deg,
+                    transparent 8deg,
+                    rgba(0, 194, 168, 0.025) 8deg,
+                    rgba(0, 194, 168, 0.025) 10deg);
+        }
+
+        /* 18. Triangles / Geometric Tessellation */
+        .bg-18 {
+            background-image:
+                linear-gradient(60deg, rgba(67, 56, 202, 0.03) 25%, transparent 25%, transparent 75%, rgba(67, 56, 202, 0.03) 75%),
+                linear-gradient(120deg, rgba(0, 194, 168, 0.03) 25%, transparent 25%, transparent 75%, rgba(0, 194, 168, 0.03) 75%);
+            background-size: 28px 48px;
+        }
+
+        /* 19. Woven Fabric / Linen texture */
+        .bg-19 {
+            background-image:
+                linear-gradient(0deg, rgba(0, 0, 0, 0.02) 50%, transparent 50%),
+                linear-gradient(90deg, rgba(0, 0, 0, 0.02) 50%, transparent 50%);
+            background-size: 4px 4px;
+        }
+
+        /* 20. Corner Accent Arcs */
+        .bg-20 {
+            background:
+                radial-gradient(circle at 0% 0%, rgba(0, 194, 168, 0.06) 0%, transparent 30%),
+                radial-gradient(circle at 100% 100%, rgba(67, 56, 202, 0.06) 0%, transparent 30%),
+                radial-gradient(circle at 100% 0%, rgba(0, 194, 168, 0.03) 0%, transparent 20%),
+                radial-gradient(circle at 0% 100%, rgba(67, 56, 202, 0.03) 0%, transparent 20%);
+        }
+
+        /* Number badge */
+        .badge {
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            background: var(--accent);
+            color: #fff;
+            font-size: 10px;
+            font-weight: 700;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .selected-label {
+            display: none;
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: #fff;
+            font-size: 9px;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 9999px;
+            z-index: 5;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 0.5px;
+        }
+
+        .card.selected .selected-label {
+            display: block;
+        }
+
+        .card.selected {
+            box-shadow: 0 0 0 3px var(--accent), 0 20px 40px -10px rgba(0, 0, 0, 0.4);
+        }
+
+        .logo-container {
+            width: 36px;
+            height: 36px;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Background Pattern Samples</h1>
+    <p class="subtitle">Click any card to select it · 20 CSS-only patterns conveying trust, innovation & quality</p>
+
+    <div class="grid" id="grid"></div>
+
+    <script>
+        const patterns = [
+            { id: 1, name: "Fine Dot Grid", desc: "Clean, minimal dot matrix — signals precision & attention to detail" },
+            { id: 2, name: "Blueprint Grid", desc: "Engineering blueprint style — conveys planning, structure & expertise" },
+            { id: 3, name: "Diagonal Lines", desc: "Subtle angular stripes — modern & forward-looking" },
+            { id: 4, name: "Honeycomb", desc: "Hexagonal pattern — organic efficiency, strength & innovation" },
+            { id: 5, name: "Crosshatch Grid", desc: "Woven perpendicular lines — stability, reliability & craftsmanship" },
+            { id: 6, name: "Gradient Mesh", desc: "Soft dual-tone radial glow — warmth, approachability & modern tech" },
+            { id: 7, name: "Concentric Rings", desc: "Signal / radar rings — innovation, focus & expanding reach" },
+            { id: 8, name: "Circuit Board", desc: "Multi-scale grid layers — technology, connectivity & smart systems" },
+            { id: 9, name: "Diamond / Argyle", desc: "Classic geometric repeat — quality, elegance & trust" },
+            { id: 10, name: "Soft Bokeh Orbs", desc: "Floating luminous spheres — creativity, ideas & inspiration" },
+            { id: 11, name: "Topography", desc: "Contour-map style rings — exploration, depth & data-driven" },
+            { id: 12, name: "Isometric Grid", desc: "3D-perspective triangles — dimension, innovation & technical depth" },
+            { id: 13, name: "Center Micro Grid", desc: "Circular-masked fine grid — focused energy, nucleus / atom feel" },
+            { id: 14, name: "Noise + Gradient", desc: "Grain texture with color glow — premium, editorial & refined" },
+            { id: 15, name: "Chevrons", desc: "Layered arrow pattern — progress, momentum & direction" },
+            { id: 16, name: "Scan Lines", desc: "Horizontal ultra-fine lines — digital, futuristic & clean" },
+            { id: 17, name: "Radial Sunburst", desc: "Conic ray pattern — energy, optimism & leadership" },
+            { id: 18, name: "Geometric Triangles", desc: "Tessellated triangles — dynamic, modern & bold" },
+            { id: 19, name: "Linen / Woven", desc: "Fabric-like texture — craftsmanship, quality & tactile premium" },
+            { id: 20, name: "Corner Accents", desc: "Soft radial corner glows — elegant, professional & polished" },
+        ];
+
+        const logoSVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+            <defs>
+                <radialGradient id="ng" cx="40%" cy="35%" r="60%"><stop offset="0%" stop-color="#e85d5d"/><stop offset="100%" stop-color="#b43333"/></radialGradient>
+                <radialGradient id="et" cx="35%" cy="30%" r="65%"><stop offset="0%" stop-color="#6ecec0"/><stop offset="100%" stop-color="#3ba99a"/></radialGradient>
+                <radialGradient id="el" cx="40%" cy="30%" r="65%"><stop offset="0%" stop-color="#c8d95a"/><stop offset="100%" stop-color="#a3b835"/></radialGradient>
+                <radialGradient id="ea" cx="40%" cy="30%" r="65%"><stop offset="0%" stop-color="#f5c842"/><stop offset="100%" stop-color="#e8a620"/></radialGradient>
+            </defs>
+            <g fill="none" stroke="#8e95a8" stroke-width="2.2">
+                <ellipse cx="50" cy="50" rx="44" ry="18" transform="rotate(-30 50 50)"/>
+                <ellipse cx="50" cy="50" rx="44" ry="18" transform="rotate(30 50 50)"/>
+                <ellipse cx="50" cy="50" rx="44" ry="18" transform="rotate(90 50 50)"/>
+            </g>
+            <circle cx="50" cy="50" r="11" fill="url(#ng)"/>
+            <circle cx="12" cy="38" r="7" fill="url(#et)"/>
+            <circle cx="72" cy="18" r="6" fill="url(#el)"/>
+            <circle cx="62" cy="84" r="6.5" fill="url(#ea)"/>
+        </svg>`;
+
+        const grid = document.getElementById('grid');
+
+        patterns.forEach(p => {
+            const sample = document.createElement('div');
+            sample.className = 'sample';
+            sample.innerHTML = `
+                <div class="sample-label">#${p.id} — ${p.name}</div>
+                <div class="card" data-id="${p.id}" onclick="selectCard(this)">
+                    <div class="badge">${p.id}</div>
+                    <div class="selected-label">✓ SELECTED</div>
+                    <header class="chrome-bar">
+                        <div class="chrome-dots">
+                            <div class="dot close"></div>
+                            <div class="dot min"></div>
+                            <div class="dot max"></div>
+                        </div>
+                        <div class="url-bar">www.atomiqworks.com</div>
+                    </header>
+                    <main class="card-content">
+                        <div class="bg-pattern bg-${p.id}"></div>
+                        <div class="branding">
+                            <div class="logo-container">${logoSVG}</div>
+                            <div class="wordmark">AtomIQ<span class="works">Works</span></div>
+                            <div class="tagline">Building what matters</div>
+                        </div>
+                        <button class="cta-pill">Bringing your story to life!</button>
+                    </main>
+                </div>
+                <div class="sample-desc">${p.desc}</div>
+            `;
+            grid.appendChild(sample);
+        });
+
+        function selectCard(el) {
+            document.querySelectorAll('.card').forEach(c => c.classList.remove('selected'));
+            el.classList.add('selected');
+        }
+    </script>
+</body>
+
+</html>

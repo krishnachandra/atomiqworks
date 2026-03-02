@@ -1,0 +1,609 @@
+/* -- atomIQworks Micro Landing Card Styles -- */
+
+/* Base font import (Montserrat + Inter fallback) */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap');
+
+:root {
+    /* Physical dimensions as requested explicitly */
+    --card-w: 3.35in;
+    --card-h: 2.17in;
+    --card-radius: 0.25in;
+
+    /* Fallback equivalents in px for rendering stability in certain screen scaling / browser zoom scenarios */
+    --fallback-w: 322px;
+    --fallback-h: 208px;
+    --fallback-radius: 24px;
+
+    --font-primary: 'Montserrat', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    /* Theming - Default (Light Mode) */
+    --bg-canvas: #e2e8f0;
+    --canvas-gradient: radial-gradient(circle at center, #f8fafc, #cbd5e1);
+    --card-surface: #F7FAFC;
+    --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05);
+    --text-main: #0b1330;
+    --text-muted: #64748b;
+    --accent: #00C2A8;
+    --accent-hover: #009c87;
+    --accent-text: #ffffff;
+    --brand-purple: #4338CA;
+    --brand-purple-light: #6366F1;
+    --chrome-bg: #e2e8f0;
+    --chrome-border: #cbd5e1;
+
+    /* Browser dots */
+    --dot-close: #ef4444;
+    --dot-min: #f59e0b;
+    --dot-max: #22c55e;
+}
+
+[data-theme="dark"] {
+    --canvas-gradient: radial-gradient(circle at center, #1b2853, #040914);
+    --card-surface: #0b1330;
+    --card-shadow: 0 14px 40px -10px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    --text-main: #F7FAFC;
+    --text-muted: #94a3b8;
+    --accent: #00C2A8;
+    --accent-hover: #33d1bd;
+    --accent-text: #0b1330;
+    --chrome-bg: #152243;
+    --chrome-border: #1e2e5c;
+}
+
+/* Base Body Resets */
+body {
+    margin: 0;
+    padding: 40px 20px;
+    background: var(--canvas-gradient);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-primary);
+    color: var(--text-main);
+    transition: background 0.4s ease;
+    overflow-y: auto;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* -- Layout Containers -- */
+.cards-container {
+    display: flex;
+    gap: 48px;
+    padding: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.card-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.view-title {
+    font-family: var(--font-primary);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.7;
+}
+
+/* -- The Card -- */
+.micro-card {
+    /* Using exact "in" dimensions with max-width/height fallbacks for screens that don't respect 'in' physically well */
+    width: var(--card-w);
+    height: var(--card-h);
+    /* Provide pixel overrides strictly if constrained, but keep physical as primary base */
+    max-width: var(--fallback-w);
+    max-height: var(--fallback-h);
+    border-radius: var(--card-radius);
+
+    background-color: var(--card-surface);
+    box-shadow: var(--card-shadow);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+    /* Subtle entrance animation */
+    animation: cardEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+@keyframes cardEntrance {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* -- Browser Chrome (~12-14% of height) -- */
+.chrome-bar {
+    height: 14%;
+    min-height: 24px;
+    background-color: var(--chrome-bg);
+    border-bottom: 1px solid var(--chrome-border);
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    position: relative;
+    transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+.chrome-dots {
+    display: flex;
+    gap: 4px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.dot.close {
+    background-color: var(--dot-close);
+}
+
+.dot.min {
+    background-color: var(--dot-min);
+}
+
+.dot.max {
+    background-color: var(--dot-max);
+}
+
+.url-bar {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.2px;
+    background: transparent;
+    padding: 2px 8px;
+    border-radius: 4px;
+    cursor: default;
+    transition: color 0.3s;
+}
+
+.url-bar:hover {
+    color: var(--text-main);
+}
+
+/* -- Main Content Area -- */
+.card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5% 8%;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Crosshatch grid as pseudo-element so mask only affects the grid, not text */
+.card-content::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+
+    /* Extra light crosshatch grid */
+    background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 14px, rgba(67, 56, 202, 0.04) 14px, rgba(67, 56, 202, 0.04) 15px),
+        repeating-linear-gradient(90deg, transparent, transparent 14px, rgba(67, 56, 202, 0.04) 14px, rgba(67, 56, 202, 0.04) 15px);
+
+    /* Fade grid ENTIRELY in center area, blend out to edges */
+    -webkit-mask-image: radial-gradient(ellipse 90% 85% at 50% 45%, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.2) 25%, rgba(0, 0, 0, 0.6) 60%, black 100%);
+    mask-image: radial-gradient(ellipse 90% 85% at 50% 45%, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.2) 25%, rgba(0, 0, 0, 0.6) 60%, black 100%);
+}
+
+/* Layout Variations */
+.layout-stack .branding {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 6px;
+}
+
+.layout-compact .branding {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+/* Logo & Wordmark */
+.logo-container {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+}
+
+.wordmark {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin: 0;
+    line-height: 1;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+}
+
+.wordmark .works {
+    color: var(--brand-purple);
+}
+
+.tagline {
+    font-size: 10px;
+    font-weight: 400;
+    color: #64748b;
+    letter-spacing: 0.5px;
+    margin: 4px 0 0 0;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.we-create {
+    font-size: 8px;
+    font-weight: 500;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+    margin: 6px 0 2px 0;
+    opacity: 0.8;
+}
+
+/* -- Creation Labels -- */
+.creation-labels {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+
+
+.creation-tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-family: var(--font-primary);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    cursor: default;
+    border: none;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 0.2s ease;
+    animation: tagPop 0.5s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+.creation-tag:nth-child(1) {
+    animation-delay: 0.3s;
+}
+
+.creation-tag:nth-child(2) {
+    animation-delay: 0.45s;
+}
+
+.creation-tag:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+.creation-tag:nth-child(4) {
+    animation-delay: 0.75s;
+}
+
+@keyframes tagPop {
+    from {
+        opacity: 0;
+        transform: scale(0.6) translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.creation-tag:hover {
+    transform: scale(1.1) translateY(-1.5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* Individual tag colors */
+.tag-websites {
+    background: linear-gradient(135deg, #0ea5e9, #38bdf8);
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(14, 165, 233, 0.3);
+}
+
+.tag-apps {
+    background: linear-gradient(135deg, var(--brand-purple), var(--brand-purple-light));
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(67, 56, 202, 0.3);
+}
+
+.tag-tools {
+    background: linear-gradient(135deg, #e8a620, #f5c842);
+    color: #1a1a2e;
+    box-shadow: 0 2px 8px rgba(232, 166, 32, 0.3);
+}
+
+.tag-saas {
+    background: linear-gradient(135deg, #b43333, #e85d5d);
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(180, 51, 51, 0.3);
+}
+
+.tag-websites:hover {
+    box-shadow: 0 4px 14px rgba(0, 194, 168, 0.45);
+}
+
+.tag-apps:hover {
+    box-shadow: 0 4px 14px rgba(67, 56, 202, 0.45);
+}
+
+.tag-tools:hover {
+    box-shadow: 0 4px 14px rgba(232, 166, 32, 0.45);
+}
+
+.tag-saas:hover {
+    box-shadow: 0 4px 14px rgba(180, 51, 51, 0.45);
+}
+
+/* -- Back Side Specifics -- */
+.contact-layout {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 0 4%;
+    z-index: 2;
+}
+
+.contact-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* -- Metrics / Stats Styles -- */
+.stats-container {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.stat-pill-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.stat-pill {
+    background-color: #1e476d;
+    color: #ffffff;
+    font-family: var(--font-primary);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 10px 18px;
+    border-radius: 8px;
+    min-width: 64px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    line-height: 1;
+}
+
+.stat-label {
+    font-family: var(--font-primary);
+    font-size: 8px;
+    font-weight: 700;
+    color: #b1121d;
+    text-align: center;
+    line-height: 1.2;
+    margin-top: 2px;
+}
+
+.contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.link-item {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+}
+
+.qr-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.qr-code {
+    width: 60px;
+    height: 60px;
+    background: #fff;
+    padding: 6px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qr-wordmark {
+    font-size: 10px;
+    font-weight: 700;
+    font-family: var(--font-primary);
+    color: var(--text-main);
+    letter-spacing: -0.2px;
+    margin-top: 2px;
+    opacity: 0.95;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.qr-wordmark .works {
+    color: var(--brand-purple);
+}
+
+.qr-tagline {
+    font-size: 7px;
+    margin-top: 1px !important;
+    opacity: 0.7;
+    text-shadow: none;
+}
+
+/* -- UI Controls (External to card for preview/demo) -- */
+.demo-controls {
+    position: absolute;
+    bottom: 24px;
+    display: flex;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 12px;
+    border-radius: 12px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    z-index: 100;
+}
+
+[data-theme="dark"] .demo-controls {
+    background: rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+.ctrl-btn {
+    background: var(--card-surface);
+    color: var(--text-main);
+    border: 1px solid var(--chrome-border);
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.ctrl-btn:hover {
+    background: var(--chrome-bg);
+}
+
+/* -- Inspect Overlay -- */
+.inspect-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 194, 168, 0.1);
+    border: 1px dashed var(--accent);
+    border-radius: var(--card-radius);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+}
+
+.inspect-overlay.active {
+    opacity: 1;
+}
+
+.inspect-tag {
+    background: var(--text-main);
+    color: var(--card-surface);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    margin: 2px;
+    opacity: 0.9;
+}
+
+/* Print CSS */
+@media print {
+    body {
+        background: none;
+        display: block;
+        margin: 0;
+        padding: 0;
+    }
+
+    .demo-controls {
+        display: none !important;
+    }
+
+    .micro-card {
+        /* Hard force exact sizing for print without shadows */
+        width: 3.35in !important;
+        height: 2.17in !important;
+        max-width: none !important;
+        max-height: none !important;
+        box-shadow: none !important;
+        border: 1px solid #e2e8f0;
+        margin: 0;
+        page-break-inside: avoid;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+
+    /* Reset animations */
+    .micro-card * {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+    }
+
+    @page {
+        size: 3.35in 2.17in;
+        /* Exact business card size */
+        margin: 0;
+    }
+}
+
+/* Small screens responsiveness */
+@media (max-width: 400px) {
+    .micro-card {
+        transform: scale(0.85);
+        /* Visual shrink down for mobiles without modifying logic */
+    }
+
+    .demo-controls {
+        flex-wrap: wrap;
+        justify-content: center;
+        max-width: 90%;
+    }
+}

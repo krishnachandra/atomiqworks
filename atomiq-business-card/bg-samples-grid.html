@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blueprint Grid Variations v2 — atomIQworks</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #0f172a;
+            color: #e2e8f0;
+            font-family: 'Inter', sans-serif;
+            padding: 40px 20px 80px;
+        }
+
+        h1 {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #00C2A8, #4338CA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #94a3b8;
+            font-size: 14px;
+            margin-bottom: 48px;
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 52px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .sample {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .sample-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #e2e8f0;
+            letter-spacing: 0.3px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .sample-desc {
+            font-size: 11px;
+            color: #94a3b8;
+            text-align: center;
+            max-width: 310px;
+            line-height: 1.5;
+        }
+
+        /* -- Card Shell -- */
+        .card {
+            width: 322px;
+            height: 208px;
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(0, 0, 0, 0.08);
+        }
+
+        .card:hover {
+            transform: translateY(-6px) scale(1.03);
+            box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.5), 0 0 0 2px #00C2A8;
+        }
+
+        .chrome-bar {
+            height: 28px;
+            background-color: #e2e8f0;
+            border-bottom: 1px solid #cbd5e1;
+            display: flex;
+            align-items: center;
+            padding: 0 12px;
+            position: relative;
+            z-index: 3;
+            flex-shrink: 0;
+        }
+
+        .chrome-dots {
+            display: flex;
+            gap: 4px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .dot.close {
+            background: #ef4444;
+        }
+
+        .dot.min {
+            background: #f59e0b;
+        }
+
+        .dot.max {
+            background: #22c55e;
+        }
+
+        .url-bar {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            color: #94a3b8;
+        }
+
+        /* The card-content now carries the background + shadow directly */
+        .card-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 5% 8%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .branding {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 8%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .wordmark {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: #0b1330;
+        }
+
+        .wordmark .works {
+            color: #4338CA;
+        }
+
+        .tagline {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            color: #64748b;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-pill {
+            width: 70%;
+            height: 26px;
+            background: #00C2A8;
+            color: #fff;
+            border: none;
+            border-radius: 9999px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Number badge */
+        .badge {
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            background: #00C2A8;
+            color: #fff;
+            font-size: 10px;
+            font-weight: 700;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .selected-label {
+            display: none;
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #00C2A8;
+            color: #fff;
+            font-size: 9px;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 9999px;
+            z-index: 5;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        .card.selected .selected-label {
+            display: block;
+        }
+
+        .card.selected {
+            box-shadow: 0 0 0 3px #00C2A8, 0 24px 48px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo-container {
+            width: 36px;
+            height: 36px;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ==============================================
+           20 BOLD BLUEPRINT GRID VARIATIONS
+           Applied directly to .card-content via unique classes
+           ============================================== */
+
+        /* 1. INDIGO CLASSIC — Original baseline but stronger */
+        .v1 .card-content {
+            background-color: #F7FAFC;
+            background-image:
+                linear-gradient(rgba(67, 56, 202, 0.12) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(67, 56, 202, 0.12) 1px, transparent 1px);
+            background-size: 16px 16px;
+        }
+
+        /* 2. TEAL BRAND — Your accent color, bold */
+        .v2 .card-content {
+            background-color: #F7FAFC;
+            background-image:
+                linear-gradient(rgba(0, 194, 168, 0.15) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 194, 168, 0.15) 1px, transparent 1px);
+            background-size: 16px 16px;
+        }
+
+        /* 3. STEEL GREY — Corporate, strong lines */
+        .v3 .card-content {
+            background-color: #F4F6F8;
+            background-image:
+                linear-gradient(rgba(51, 65, 85, 0.14) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(51, 65, 85, 0.14) 1px, transparent 1px);
+            background-size: 16px 16px;
+        }
+
+        /* 4. INDIGO EMBOSSED — Deep inset shadow like a pressed plate */
+        .v4 .card-content {
+            background-color: #F0F2F8;
+            background-image:
+                linear-gradient(rgba(67, 56, 202, 0.10) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(67, 56, 202, 0.10) 1px, transparent 1px);
+            background-size: 16px 16px;
+            box-shadow:
+                inset 0 4px 12px rgba(67, 56, 202, 0.15),
+                inset 0 -4px 12px rgba(0, 0, 0, 0.08),
+                inset 4px 0 12px rgba(0, 0, 0, 0.04),
+                inset -4px 0 12px rgba(0, 0, 0, 0.04);
+        }
+
+        /* 5. TEAL VIGNETTE — Grid fades from dark edges to bright center */
+        .v5 .card-content {
+            background-color: #F7FAFC;
+            background-image:
+                radial-gradient(ellipse at center, transparent 30%, rgba(0, 80, 70, 0.10) 100%),
+                linear-gradient(rgba(0, 194, 168, 0.12) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 194, 168, 0.12) 1px, transparent 1px);
+            background-size: 100% 100%, 16px 16px, 16px 16px;
+        }
+
+        /* 6. DUAL-SCALE BLUEPRINT — Large + small grid like real engineering paper */
+        .v6 .card-content {
+            background-color: #F2F5FC;
+            background-image:
+                linear-gradient(rgba(67, 56, 202, 0.20) 1.5px, transparent 1.5px),
+                linear-gradient(90deg, rgba(67, 56, 202, 0.20) 1.5px, transparent 1.5px),
+                linear-gradient(rgba(67, 56, 202, 0.07) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(67, 56, 202, 0.07) 1px, transparent 1px);
+            background-size: 64px 64px, 64px 64px, 16px 16px, 16px 16px;
+        }
+
+        /* 7. LIFTED CARD — Grid + strong bottom shadow gradient */
+        .v7 .card-content {
+            background-color: #F7FAFC;
+            background-image:
+                linear-gradient(to top, rgba(67, 56, 202, 0.12) 0%, transparent 50%),
+                linear-gradient(rgba(67, 56, 202, 0.10) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(67, 56, 202, 0.10) 1px, transparent 1px);
+            background-size: 100% 100%, 16px 16px, 16px 16px;
+        }
+
+        /* 8. GOLD PREMIUM — Amber/gold grid with warm glow */
+        .v8 .card-content {
+            background-color: #FFFCF5;
+            background-image:
+                linear-gradient(rgba(180, 120, 10, 0.12) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(180, 120, 10, 0.12) 1px, transparent 1px);
+            background-size: 16px 16px;
+            box-shadow: inset 0 0 40px rgba(200, 150, 30, 0.10);
+        }
+
+        /* 9. ROSE WARM — Coral/rose grid, creative & approachable */
+        .v9 .card-content {
+            background-color: #FFF8F8;
+            background-image:
+                linear-gradient(rgba(220, 50, 80, 0.10) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(220, 50, 80, 0.10) 1px, transparent 1px);
+            background-size: 16px 16px;
+        }
+
+        /* 10. TOP-LIT 3D — White light from top, shadow at bottom */
+        .v10 .card-content {
+            background-color: #F7FAFC;
+            background-image:
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 25%, transparent 70%, rgba(67, 56, 202, 0.08) 100%),
+                linear-gradient(rgba(67, 56, 202, 0.10) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(67, 56, 202, 0.10) 1px, transparent 1px);
+            background-size: 100% 100%, 16px 16px, 16px 16px;
+            box-shadow: inset 0 -6px 16px rgba(67, 56, 202, 0.10);
+        }
+
+        /* 11. TEAL DIAGONAL WASH — Dynamic gradient across grid */
+        .v11 .card-content {
+            background-color: #F7FAFC;
+            background-image:
+                linear-gradient(135deg, rgba(0, 194, 168, 0.14) 0%, transparent 40%, transparent 60%, rgba(67, 56, 202, 0.10) 100%),
+                linear-gradient(rgba(0, 194, 168, 0.10) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 194, 168, 0.10) 1px, transparent 1px);
+            background-size: 100% 100%, 16px 16px, 16px 16px;
+        }
+
+        /* 12. EMERALD DEPTH — Deep green grid with strong inner shadow */
+        .v12 .card-content {
+            background-color: #F5FAF7;
+            background-image:
+                linear-gradient(rgba(16, 120, 70, 0.12) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(16, 120, 70, 0.12) 1px, transparent 1px);
+            background-size: 16px 16px;
+            box-shadow:
+                inset 0 3px 10px rgba(16, 120, 70, 0.12),
+                inset 0 -3px 10px rgba(0, 0, 0, 0.06);
+        }
+
+        /* 13. ELECTRIC CYAN — Bold tech blue, digital feel */
+        .v13 .card-content {
+            background-color: #F5FAFF;
+            background-image:
+                linear-gradient(rgba(6, 120, 210, 0.13) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(6, 120, 210, 0.13) 1px, transparent 1px);
+            background-size: 16px 16px;
+            box-shadow: inset 0 2px 14px rgba(6, 120, 210, 0.10);
+        }
+
+        /* 14. SPOTLIGHT CENTER — Center glow making branding pop */
+        .v14 .card-content {
+            background-color: #F4F4FC;
+            background-image:
+                radial-gradient(ellipse at 50% 45%, rgba(67, 56, 202, 0.12) 0%, transparent 45%),
+                linear-gradient(rgba(67, 56, 202, 0.10) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(67, 56, 202, 0.10) 1px, transparent 1px);
+            background-size: 100% 100%, 16px 16px, 16px 16px;
+        }
+
+        /* 15. PURPLE PREMIUM — Violet grid with layered depth */
+        .v15 .card-content {
+            background-color: #F8F5FF;
+            background-image:
+                linear-gradient(rgba(124, 58, 237, 0.12) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(124, 58, 237, 0.12) 1px, transparent 1px);
+            background-size: 16px 16px;
+            box-shadow:
+                inset 0 4px 14px rgba(124, 58, 237, 0.10),
+                inset 0 -3px 10px rgba(124, 58, 237, 0.06);
+        }
+
+        /* 16. FADED EDGES — Grid visible in center, fades away at edges */
+        .v16 .card-content {
+            background-color: #F7FAFC;
+            background-image:
+                linear-gradient(rgba(67, 56, 202, 0.18) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(67, 56, 202, 0.18) 1px, transparent 1px);
+            background-size: 16px 16px;
+            -webkit-mask-image: radial-gradient(ellipse 70% 65% at center, black 40%, transparent 75%);
+            mask-image: radial-gradient(ellipse 70% 65% at center, black 40%, transparent 75%);
+        }
+
+        /* 17. RAISED PLATFORM — 3D highlight on top, shadow on bottom like embossed */
+        .v17 .card-content {
+            background-color: #F7FAFC;
+            background-image:
+                linear-gradient(rgba(0, 194, 168, 0.12) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 194, 168, 0.12) 1px, transparent 1px);
+            background-size: 16px 16px;
+            box-shadow:
+                inset 0 2px 0 rgba(255, 255, 255, 0.7),
+                inset 0 -4px 12px rgba(0, 0, 0, 0.10),
+                inset 0 4px 12px rgba(255, 255, 255, 0.3);
+        }
+
+        /* 18. CORNER GLOW — Teal & indigo glows from opposite corners + grid */
+        .v18 .card-content {
+            background-color: #F7FAFC;
+            background-image:
+                radial-gradient(ellipse at 0% 0%, rgba(0, 194, 168, 0.16) 0%, transparent 45%),
+                radial-gradient(ellipse at 100% 100%, rgba(67, 56, 202, 0.14) 0%, transparent 45%),
+                linear-gradient(rgba(67, 56, 202, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(67, 56, 202, 0.08) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 16px 16px, 16px 16px;
+        }
+
+        /* 19. FULL PRESSED-IN — Heavy inset bevel, grid appears engraved */
+        .v19 .card-content {
+            background-color: #EEF0F6;
+            background-image:
+                linear-gradient(rgba(67, 56, 202, 0.12) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(67, 56, 202, 0.12) 1px, transparent 1px);
+            background-size: 16px 16px;
+            box-shadow:
+                inset 0 6px 16px rgba(0, 0, 0, 0.12),
+                inset 0 -6px 16px rgba(0, 0, 0, 0.08),
+                inset 6px 0 16px rgba(0, 0, 0, 0.06),
+                inset -6px 0 16px rgba(0, 0, 0, 0.06);
+        }
+
+        /* 20. TEAL-INDIGO SPLIT — Left half teal tint, right half indigo tint + grid */
+        .v20 .card-content {
+            background-color: #F7FAFC;
+            background-image:
+                linear-gradient(90deg, rgba(0, 194, 168, 0.10) 0%, transparent 40%, transparent 60%, rgba(67, 56, 202, 0.10) 100%),
+                linear-gradient(rgba(67, 56, 202, 0.10) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(67, 56, 202, 0.10) 1px, transparent 1px);
+            background-size: 100% 100%, 16px 16px, 16px 16px;
+            box-shadow:
+                inset 0 3px 8px rgba(0, 0, 0, 0.06),
+                inset 0 -3px 8px rgba(0, 0, 0, 0.04);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Blueprint Grid — Bold Variations v2</h1>
+    <p class="subtitle">20 distinct grid styles with visible colors, shadows & 3D depth · Click to select your favorite
+    </p>
+
+    <div class="grid-layout" id="grid"></div>
+
+    <script>
+        const patterns = [
+            { id: 1, css: "v1", name: "Indigo Classic", desc: "Strong indigo grid lines — the clean blueprint baseline" },
+            { id: 2, css: "v2", name: "Teal Brand Grid", desc: "Bold teal accent grid — vibrant, on-brand, confident" },
+            { id: 3, css: "v3", name: "Steel Grey", desc: "Dark slate lines on cool white — corporate authority" },
+            { id: 4, css: "v4", name: "Indigo Embossed", desc: "Deep inset shadow on all sides — looks pressed into the card like a stamp" },
+            { id: 5, css: "v5", name: "Teal Vignette", desc: "Edges darken with a teal wash — spotlight on your branding" },
+            { id: 6, css: "v6", name: "Dual-Scale Blueprint", desc: "Large + small grid like real engineering paper — thick major lines, fine minor" },
+            { id: 7, css: "v7", name: "Lifted Card", desc: "Indigo gradient rising from bottom — card feels elevated off surface" },
+            { id: 8, css: "v8", name: "Gold Premium", desc: "Amber grid on warm ivory — luxury, confidence, high-end" },
+            { id: 9, css: "v9", name: "Rose / Coral", desc: "Soft red-pink grid on warm white — approachable, creative, warm" },
+            { id: 10, css: "v10", name: "Top-Lit 3D Paper", desc: "White light from above + bottom shadow — 3D paper sheet illusion" },
+            { id: 11, css: "v11", name: "Teal-Indigo Diagonal", desc: "Color wash running corner to corner — dynamic energy & motion" },
+            { id: 12, css: "v12", name: "Emerald Depth", desc: "Forest green grid with top/bottom shadow — organic trust, solidity" },
+            { id: 13, css: "v13", name: "Electric Cyan", desc: "Bright tech-blue grid with inner glow — digital-first, futuristic" },
+            { id: 14, css: "v14", name: "Center Spotlight", desc: "Radial glow behind logo area — innovation energy radiating outward" },
+            { id: 15, css: "v15", name: "Purple Premium", desc: "Violet grid with top + bottom inset shadow — creative & luxurious" },
+            { id: 16, css: "v16", name: "Faded Edges", desc: "Grid fades away at edges, strong in center — elegant floating effect" },
+            { id: 17, css: "v17", name: "Raised Platform", desc: "Bright top edge + dark bottom — card surface looks physically raised" },
+            { id: 18, css: "v18", name: "Corner Glow", desc: "Teal glow top-left, indigo bottom-right — depth & color dimension" },
+            { id: 19, css: "v19", name: "Pressed-In 3D", desc: "Heavy inset shadows on all four sides — grid looks engraved deep into card" },
+            { id: 20, css: "v20", name: "Teal-Indigo Split", desc: "Left half teal tint, right half indigo — split personality with subtle bevel" },
+        ];
+
+        const logoSVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+            <defs>
+                <radialGradient id="ng" cx="40%" cy="35%" r="60%"><stop offset="0%" stop-color="#e85d5d"/><stop offset="100%" stop-color="#b43333"/></radialGradient>
+                <radialGradient id="et" cx="35%" cy="30%" r="65%"><stop offset="0%" stop-color="#6ecec0"/><stop offset="100%" stop-color="#3ba99a"/></radialGradient>
+                <radialGradient id="el" cx="40%" cy="30%" r="65%"><stop offset="0%" stop-color="#c8d95a"/><stop offset="100%" stop-color="#a3b835"/></radialGradient>
+                <radialGradient id="ea" cx="40%" cy="30%" r="65%"><stop offset="0%" stop-color="#f5c842"/><stop offset="100%" stop-color="#e8a620"/></radialGradient>
+            </defs>
+            <g fill="none" stroke="#8e95a8" stroke-width="2.2">
+                <ellipse cx="50" cy="50" rx="44" ry="18" transform="rotate(-30 50 50)"/>
+                <ellipse cx="50" cy="50" rx="44" ry="18" transform="rotate(30 50 50)"/>
+                <ellipse cx="50" cy="50" rx="44" ry="18" transform="rotate(90 50 50)"/>
+            </g>
+            <circle cx="50" cy="50" r="11" fill="url(#ng)"/>
+            <circle cx="12" cy="38" r="7" fill="url(#et)"/>
+            <circle cx="72" cy="18" r="6" fill="url(#el)"/>
+            <circle cx="62" cy="84" r="6.5" fill="url(#ea)"/>
+        </svg>`;
+
+        const grid = document.getElementById('grid');
+
+        patterns.forEach(p => {
+            const sample = document.createElement('div');
+            sample.className = 'sample';
+            sample.innerHTML = `
+                <div class="sample-label">#${p.id} — ${p.name}</div>
+                <div class="card ${p.css}" data-id="${p.id}" onclick="selectCard(this)">
+                    <div class="badge">${p.id}</div>
+                    <div class="selected-label">✓ SELECTED</div>
+                    <header class="chrome-bar">
+                        <div class="chrome-dots">
+                            <div class="dot close"></div>
+                            <div class="dot min"></div>
+                            <div class="dot max"></div>
+                        </div>
+                        <div class="url-bar">www.atomiqworks.com</div>
+                    </header>
+                    <div class="card-content">
+                        <div class="branding">
+                            <div class="logo-container">${logoSVG}</div>
+                            <div class="wordmark">AtomIQ<span class="works">Works</span></div>
+                            <div class="tagline">Building what matters</div>
+                        </div>
+                        <button class="cta-pill">Bringing your story to life!</button>
+                    </div>
+                </div>
+                <div class="sample-desc">${p.desc}</div>
+            `;
+            grid.appendChild(sample);
+        });
+
+        function selectCard(el) {
+            document.querySelectorAll('.card').forEach(c => c.classList.remove('selected'));
+            el.classList.add('selected');
+        }
+    </script>
+</body>
+
+</html>
