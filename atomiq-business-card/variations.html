@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atomiq Stat Variations</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="variations.css">
+    <style>
+        body {
+            background: #f0f2f5;
+            font-family: 'Montserrat', sans-serif;
+            height: auto;
+            display: block;
+            overflow-y: scroll;
+            padding: 40px;
+        }
+
+        .page-header {
+            max-width: 1200px;
+            margin: 0 auto 40px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            color: #1e476d;
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .page-header p {
+            color: #64748b;
+            font-size: 16px;
+        }
+
+        [data-theme="dark"] body {
+            background: #0f172a;
+        }
+
+        [data-theme="dark"] .page-header h1 {
+            color: #f8fafc;
+        }
+
+        [data-theme="dark"] .page-header p {
+            color: #94a3b8;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-header">
+        <h1>Stat Display Variations</h1>
+        <p>20 creative ways to display Atomiq metrics, all reduced in size.</p>
+        <button class="ctrl-btn" onclick="toggleTheme()" style="margin-top: 20px;">🌓 Toggle Light/Dark</button>
+    </div>
+
+    <div class="variations-grid">
+        <!-- Variation 1: Glassmorphic -->
+        <div class="variation-card v1">
+            <div class="variation-label">1. Glassmorphic</div>
+            <div class="stats-preview">
+                <div class="stat-box v-stat">
+                    <span class="val">150+</span>
+                    <span class="lbl">Projects</span>
+                </div>
+                <div class="stat-box v-stat">
+                    <span class="val">18+</span>
+                    <span class="lbl">Years</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Variation 2: Minimalist Vertical -->
+        <div class="variation-card v2">
+            <div class="variation-label">2. Minimalist Vertical</div>
+            <div class="stats-preview">
+                <div class="v-stat">
+                    <span class="val">150+</span>
+                    <span class="lbl">Projects Delivered</span>
+                </div>
+                <div style="width: 1px; height: 30px; background: #e2e8f0; margin: 0 10px;"></div>
+                <div class="v-stat">
+                    <span class="val">18+</span>
+                    <span class="lbl">Years Experience</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Variation 3: Horizontal Split -->
+        <div class="variation-card v3">
+            <div class="variation-label">3. Horizontal Split</div>
+            <div class="stats-preview">
+                <div class="stat-box v-stat">
+                    <span class="val">150+</span>
+                    <span class="lbl">Projects</span>
+                </div>
+                <div class="stat-box v-stat">
+                    <span class="val">18+</span>
+                    <span class="lbl">Years</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Variation 4: Accent Circle -->
+        <div class="variation-card v4">
+            <div class="variation-label">4. Accent Circle</div>
+            <div class="stats-preview" style="gap: 30px;">
+                <div class="v-stat">
+                    <span class="val">150+</span>
+                    <span class="lbl">Projects</span>
+                </div>
+                <div class="v-stat">
+                    <span class="val">18+</span>
+                    <span class="lbl">Years</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Variation 5: Neon Glow -->
+        <div class="variation-card v5">
+            <div class="variation-label">5. Neon Glow</div>
+            <div class="stats-preview">
+                <div class="v-stat">
+                    <span class="val">150+</span>
+                    <span class="lbl">Projects</span>
+                </div>
+                <span style="color: #334155;">/</span>
+                <div class="v-stat">
+                    <span class="val">18+</span>
+                    <span class="lbl">Experience</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Variation 6: Brutalist -->
+        <div class="variation-card v6">
+            <div class="variation-label">6. Brutalist</div>
+            <div class="stats-preview">
+                <div class="stat-box v-stat">
+                    <span class="val">150+</span>
+                    <span class="lbl">Projects</span>
+                </div>
+                <div class="stat-box v-stat">
+                    <span class="val">18+</span>
+                    <span class="lbl">Years Exp</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Variation 7: Skeuomorphic -->
+        <div class="variation-card v7">
+            <div class="variation-label">7. Skeuomorphic</div>
+            <div class="stats-preview">
+                <div class="stat-box v-stat">
+                    <span class="val">150+</span>
+                    <span class="lbl">Projects</span>
+                </div>
+                <div class="stat-box v-stat">
+                    <span class="val">18+</span>
+                    <span class="lbl">Years</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Variation 8: Tag Style -->
+        <div class="variation-card v8">
+            <div class="variation-label">8. Tag Style</div>
+            <div class="stats-preview">
+                <div class="stat-box">
+                    <span class="val">150+</span>
+                    <span class="lbl">Projects</span>
+                </div>
+                <div class="stat-box">
+                    <span class="val">18+</span>
+                    <span class="lbl">Exp</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Variation 9: Badge Style -->
+        <div class="variation-card v9">
+            <div class="variation-label">9. Badge Style</div>
+            <div class="stats-preview">
+                <div class="stat-box">
+                    <span class="val">150+</span>
+                    <span class="lbl">Deliveries</span>
+                </div>
+                <div class="stat-box">
+                    <span class="val">18+</span>
+                    <span class="lbl">Experience</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Variation 10: Gradient Text -->
+        <div class="variation-card v10">
+            <div class="variation-label">10. Gradient Text</div>
+            <div class="stats-preview">
+                <div class="v-stat">
+                    <span class="val">150+</span>
+                    <span class="lbl">Projects</span>
+                </div>
+                <span style="font-size: 20px; color: #cbd5e1; margin-bottom: 20px;">|</span>
+                <div class="v-stat">
+                    <span class="val">18+</span>
+                    <span class="lbl">Years Exp</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Variation 11: Sidebar Style -->
+        <div class="variation-card v11">
+            <div class="variation-label">11. Sidebar Style</div>
+            <div class="stats-preview" style="justify-content: flex-start; gap: 40px; padding-left: 20px;">
+                <div class="stat-box v-stat">
+                    <span class="val">150+</span>
+                    <span class="lbl">Projects</span>
+                </div>
+                <div class="stat-box v-stat">
+                    <span class="val">18+</span>
+                    <span class="lbl">Years Exp</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Variation 12: Dot Indicator -->
+        <div class="variation-card v12">
+            <div class="variation-label">12. Status Dots</div>
+            <div class="stats-preview">
+                <div class="stat-box">
+                    <div class="dot"></div>
+                    <div class="v-stat" style="align-items: flex-start;">
+                        <span class="val">150+</span>
+                        <span class="lbl">Completed</span>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <div class="dot" style="background: #38bdf8; box-shadow: 0 0 8px #38bdf8;"></div>
+                    <div class="v-stat" style="align-items: flex-start;">
+                        <span class="val">18+</span>
+                        <span class="lbl">Years Exp</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Variation 13: Retro Terminal -->
+        <div class="variation-card v13">
+            <div class="variation-label">13. Retro Terminal</div>
+            <div class="stats-preview">
+                <div style="flex: 1;">
+                    <div class="val">prj_delivered: 150+</div>
+                    <div class="lbl">Successfully deployed</div>
+                    <div style="margin-top: 8px;" class="val">years_exp: 18+</div>
+                    <div class="lbl">Seniority index</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Variation 14: Inset Shadow -->
+        <div class="variation-card v14">
+            <div class="variation-label">14. Inset Look</div>
+            <div class="stats-preview">
+                <div class="stat-box v-stat">
+                    <span class="val">150+</span>
+                    <span class="lbl">Projects</span>
+                </div>
+                <div class="stat-box v-stat">
+                    <span class="val">18+</span>
+                    <span class="lbl">Years Exp</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Variation 15: Floating Label -->
+        <div class="variation-card v15">
+            <div class="variation-label">15. Floating Badge</div>
+            <div class="stats-preview">
+                <div class="v-stat">
+                    <span class="val">150+</span>
+                    <span class="lbl">Projects</span>
+                </div>
+                <div class="v-stat" style="margin-left: 20px;">
+                    <span class="val">18+</span>
+                    <span class="lbl">Years Exp</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Variation 16: Dotted Design -->
+        <div class="variation-card v16">
+            <div class="variation-label">16. Blueprint</div>
+            <div class="stats-preview">
+                <div class="stat-box v-stat">
+                    <span class="val">150+</span>
+                    <span class="lbl">Projects</span>
+                </div>
+                <div class="stat-box v-stat">
+                    <span class="val">18+</span>
+                    <span class="lbl">Years</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Variation 17: Label Focus -->
+        <div class="variation-card v17">
+            <div class="variation-label">17. Text Driven</div>
+            <div class="stats-preview">
+                <div class="v-stat">
+                    <span class="lbl">Over 150+</span>
+                    <span class="val">Deliveries</span>
+                </div>
+                <div class="v-stat">
+                    <span class="lbl">Across 18+</span>
+                    <span class="val">Years Exp</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Variation 18: Condensed Row -->
+        <div class="variation-card v18">
+            <div class="variation-label">18. Compact Row</div>
+            <div class="stats-preview">
+                <div class="stat-box">
+                    <span class="val">150+</span>
+                    <span class="lbl">PROJECTS</span>
+                </div>
+                <div class="stat-box">
+                    <span class="val">18+</span>
+                    <span class="lbl">YEARS</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Variation 19: Playful Bubble -->
+        <div class="variation-card v19">
+            <div class="variation-label">19. Playful Bubble</div>
+            <div class="stats-preview">
+                <div class="stat-box v-stat">
+                    <span class="val">150+</span>
+                    <span class="lbl">Built</span>
+                </div>
+                <div class="stat-box v-stat">
+                    <span class="val">18+</span>
+                    <span class="lbl">Years</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Variation 20: Modern Card -->
+        <div class="variation-card v20">
+            <div class="variation-label">20. Micro Cards</div>
+            <div class="stats-preview">
+                <div class="stat-box v-stat">
+                    <span class="val">150+</span>
+                    <span class="lbl">Projects</span>
+                </div>
+                <div class="stat-box v-stat">
+                    <span class="val">18+</span>
+                    <span class="lbl">Experience</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const htmlEl = document.documentElement;
+        let isDark = false;
+        function toggleTheme() {
+            isDark = !isDark;
+            htmlEl.setAttribute('data-theme', isDark ? 'dark' : 'light');
+        }
+    </script>
+</body>
+
+</html>
