@@ -232,14 +232,14 @@ body {
     z-index: 0;
     pointer-events: none;
 
-    /* Slightly darker crosshatch grid */
+    /* More visible crosshatch grid */
     background-image:
-        repeating-linear-gradient(0deg, transparent, transparent 14px, rgba(67, 56, 202, 0.08) 14px, rgba(67, 56, 202, 0.08) 15px),
-        repeating-linear-gradient(90deg, transparent, transparent 14px, rgba(67, 56, 202, 0.08) 14px, rgba(67, 56, 202, 0.08) 15px);
+        repeating-linear-gradient(0deg, transparent, transparent 14px, rgba(67, 56, 202, 0.1) 14px, rgba(67, 56, 202, 0.1) 15px),
+        repeating-linear-gradient(90deg, transparent, transparent 14px, rgba(67, 56, 202, 0.1) 14px, rgba(67, 56, 202, 0.1) 15px);
 
-    /* Fade grid in center area, blend out to edges - slightly more visible center */
-    -webkit-mask-image: radial-gradient(ellipse 90% 85% at 50% 45%, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.3) 25%, rgba(0, 0, 0, 0.7) 60%, black 100%);
-    mask-image: radial-gradient(ellipse 90% 85% at 50% 45%, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.3) 25%, rgba(0, 0, 0, 0.7) 60%, black 100%);
+    /* Adjusted mask for better visibility through center area */
+    -webkit-mask-image: radial-gradient(ellipse 90% 85% at 50% 45%, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.35) 25%, rgba(0, 0, 0, 0.7) 60%, black 100%);
+    mask-image: radial-gradient(ellipse 90% 85% at 50% 45%, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.35) 25%, rgba(0, 0, 0, 0.7) 60%, black 100%);
 }
 
 /* Layout Variations */
@@ -537,7 +537,7 @@ body {
     font-family: var(--font-primary);
     color: var(--text-main);
     letter-spacing: -0.2px;
-    margin-top: 0;
+    margin-top: 1px;
     opacity: 0.95;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
