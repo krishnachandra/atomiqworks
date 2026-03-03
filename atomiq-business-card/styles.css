@@ -232,14 +232,14 @@ body {
     z-index: 0;
     pointer-events: none;
 
-    /* Extra light crosshatch grid */
+    /* Slightly darker crosshatch grid */
     background-image:
-        repeating-linear-gradient(0deg, transparent, transparent 14px, rgba(67, 56, 202, 0.04) 14px, rgba(67, 56, 202, 0.04) 15px),
-        repeating-linear-gradient(90deg, transparent, transparent 14px, rgba(67, 56, 202, 0.04) 14px, rgba(67, 56, 202, 0.04) 15px);
+        repeating-linear-gradient(0deg, transparent, transparent 14px, rgba(67, 56, 202, 0.08) 14px, rgba(67, 56, 202, 0.08) 15px),
+        repeating-linear-gradient(90deg, transparent, transparent 14px, rgba(67, 56, 202, 0.08) 14px, rgba(67, 56, 202, 0.08) 15px);
 
-    /* Fade grid ENTIRELY in center area, blend out to edges */
-    -webkit-mask-image: radial-gradient(ellipse 90% 85% at 50% 45%, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.2) 25%, rgba(0, 0, 0, 0.6) 60%, black 100%);
-    mask-image: radial-gradient(ellipse 90% 85% at 50% 45%, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.2) 25%, rgba(0, 0, 0, 0.6) 60%, black 100%);
+    /* Fade grid in center area, blend out to edges - slightly more visible center */
+    -webkit-mask-image: radial-gradient(ellipse 90% 85% at 50% 45%, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.3) 25%, rgba(0, 0, 0, 0.7) 60%, black 100%);
+    mask-image: radial-gradient(ellipse 90% 85% at 50% 45%, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.3) 25%, rgba(0, 0, 0, 0.7) 60%, black 100%);
 }
 
 /* Layout Variations */
@@ -404,7 +404,6 @@ body {
 .contact-layout {
     display: flex;
     width: 100%;
-    height: 100%;
     align-items: center;
     justify-content: space-between;
     gap: 28px;
@@ -515,7 +514,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
     flex-shrink: 0;
 }
 
@@ -538,7 +537,7 @@ body {
     font-family: var(--font-primary);
     color: var(--text-main);
     letter-spacing: -0.2px;
-    margin-top: 3px;
+    margin-top: 0;
     opacity: 0.95;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
