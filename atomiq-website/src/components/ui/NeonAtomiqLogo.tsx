@@ -44,19 +44,19 @@ export function NeonAtomiqLogo({ size = 32, className = '' }: NeonAtomiqLogoProp
                 {/* Orbit 1 Path (Vertical 90°) */}
                 <div className="absolute inset-0" style={{ transform: 'rotate(90deg)' }}>
                     <svg viewBox={`0 0 ${containerSize} ${containerSize}`} className={`absolute inset-0 ${neonGlow}`}>
-                        <ellipse cx={containerSize / 2} cy={containerSize / 2} rx={orbitRadiusX} ry={orbitRadiusY} fill="none" stroke="#60a5fa" strokeWidth="1" />
+                        <ellipse cx={containerSize / 2} cy={containerSize / 2} rx={orbitRadiusX} ry={orbitRadiusY} fill="none" stroke="black" strokeWidth="4.2" />
                     </svg>
                 </div>
                 {/* Orbit 2 Path (Diagonal 30°) */}
                 <div className="absolute inset-0" style={{ transform: 'rotate(30deg)' }}>
                     <svg viewBox={`0 0 ${containerSize} ${containerSize}`} className={`absolute inset-0 ${neonGlow}`}>
-                        <ellipse cx={containerSize / 2} cy={containerSize / 2} rx={orbitRadiusX} ry={orbitRadiusY} fill="none" stroke="#60a5fa" strokeWidth="1" />
+                        <ellipse cx={containerSize / 2} cy={containerSize / 2} rx={orbitRadiusX} ry={orbitRadiusY} fill="none" stroke="black" strokeWidth="4.2" />
                     </svg>
                 </div>
                 {/* Orbit 3 Path (Diagonal -30°) */}
                 <div className="absolute inset-0" style={{ transform: 'rotate(-30deg)' }}>
                     <svg viewBox={`0 0 ${containerSize} ${containerSize}`} className={`absolute inset-0 ${neonGlow}`}>
-                        <ellipse cx={containerSize / 2} cy={containerSize / 2} rx={orbitRadiusX} ry={orbitRadiusY} fill="none" stroke="#60a5fa" strokeWidth="1" />
+                        <ellipse cx={containerSize / 2} cy={containerSize / 2} rx={orbitRadiusX} ry={orbitRadiusY} fill="none" stroke="black" strokeWidth="4.2" />
                     </svg>
                 </div>
             </div>

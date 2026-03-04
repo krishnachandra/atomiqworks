@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR CTA Variations</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: #f1f5f9;
+            padding: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 30px;
+            align-items: start;
+            min-height: 100vh;
+        }
+
+        .var-card {
+            background: #fff;
+            padding: 30px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .var-label {
+            position: absolute;
+            top: 8px;
+            left: 10px;
+            font-size: 10px;
+            color: #94a3b8;
+            font-family: var(--font-mono);
+            font-weight: 600;
+        }
+
+        /* Disable the original .qr-cta styling selectively if it conflicts, but mostly we override it here */
+
+        /* 1: Current */
+        .v1 .qr-cta {
+            font-size: 7px;
+            font-weight: 700;
+            color: var(--brand-purple);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* 2: Muted Wide */
+        .v2 .qr-cta {
+            font-size: 8px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        /* 3: Subtle Italic */
+        .v3 .qr-cta {
+            clear: both;
+            font-size: 9px;
+            font-weight: 500;
+            color: #94a3b8;
+            font-style: italic;
+            letter-spacing: 0.2px;
+            text-transform: none;
+        }
+
+        /* 4: Mono Tech */
+        .v4 .qr-cta {
+            font-family: var(--font-mono);
+            font-size: 7.5px;
+            font-weight: 500;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 0px;
+        }
+
+        /* 5: Aqua Heavy */
+        .v5 .qr-cta {
+            font-size: 8px;
+            font-weight: 800;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* 6: Purple Pill */
+        .v6 .qr-cta {
+            font-size: 7px;
+            font-weight: 700;
+            color: var(--brand-purple);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: rgba(67, 56, 202, 0.1);
+            padding: 3px 8px;
+            border-radius: 10px;
+            margin-top: 2px;
+        }
+
+        /* 7: Underlined */
+        .v7 .qr-cta {
+            font-size: 7.5px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid var(--text-muted);
+            padding-bottom: 1px;
+        }
+
+        /* 8: Ghost Button */
+        .v8 .qr-cta {
+            font-size: 7px;
+            font-weight: 600;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 1px solid var(--chrome-border);
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-top: 2px;
+        }
+
+        /* 9: Semi-transparent */
+        .v9 .qr-cta {
+            font-size: 8px;
+            font-weight: 600;
+            color: rgba(11, 19, 48, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* 10: Title Case Mono */
+        .v10 .qr-cta {
+            font-family: var(--font-mono);
+            font-size: 8.5px;
+            font-weight: 500;
+            color: var(--brand-purple);
+            text-transform: none;
+        }
+
+        /* 11: Micro Wide */
+        .v11 .qr-cta {
+            font-size: 6px;
+            font-weight: 700;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+        }
+
+        /* 12: With Arrow */
+        .v12 .qr-cta {
+            font-size: 7px;
+            font-weight: 700;
+            color: var(--brand-purple);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* 13: Gradient */
+        .v13 .qr-cta {
+            font-size: 8px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: linear-gradient(135deg, var(--brand-purple), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* 14: Outline Pill */
+        .v14 .qr-cta {
+            font-size: 7px;
+            font-weight: 600;
+            color: var(--brand-purple);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 1px solid var(--brand-purple);
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-top: 2px;
+        }
+
+        /* 15: Clean Sans */
+        .v15 .qr-cta {
+            font-size: 10px;
+            font-weight: 500;
+            color: var(--text-main);
+            letter-spacing: 0;
+            text-transform: none;
+        }
+
+        /* 16: Bracketed */
+        .v16 .qr-cta {
+            font-family: var(--font-mono);
+            font-size: 7.5px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: none;
+        }
+
+        /* 17: Aqua Underline */
+        .v17 .qr-cta {
+            font-size: 8px;
+            font-weight: 700;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 1px;
+            margin-bottom: 4px;
+        }
+
+        /* 18: Small Caps */
+        .v18 .qr-cta {
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--text-main);
+            font-variant: small-caps;
+            text-transform: none;
+        }
+
+        /* 19: Light Badge */
+        .v19 .qr-cta {
+            font-size: 7px;
+            font-weight: 700;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: #e2e8f0;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-top: 2px;
+        }
+
+        /* 20: Dark Badge */
+        .v20 .qr-cta {
+            font-size: 6.5px;
+            font-weight: 700;
+            color: white;
+            background: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-top: 2px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script>
+        const variations = [
+            { id: "v1", name: "v1: Current", text: "Checkout Portfolio" },
+            { id: "v2", name: "v2: Muted Wide", text: "Checkout Portfolio" },
+            { id: "v3", name: "v3: Subtle Italic", text: "Checkout Portfolio" },
+            { id: "v4", name: "v4: Mono Tech", text: "Checkout Portfolio" },
+            { id: "v5", name: "v5: Aqua Heavy", text: "Checkout Portfolio" },
+            { id: "v6", name: "v6: Purple Pill", text: "Checkout Portfolio" },
+            { id: "v7", name: "v7: Underlined", text: "Checkout Portfolio" },
+            { id: "v8", name: "v8: Ghost Button", text: "Checkout Portfolio" },
+            { id: "v9", name: "v9: Semi-transparent", text: "Checkout Portfolio" },
+            { id: "v10", name: "v10: Title Case Mono", text: "Checkout Portfolio" },
+            { id: "v11", name: "v11: Micro Wide", text: "Checkout Portfolio" },
+            { id: "v12", name: "v12: With Arrow", text: "Checkout Portfolio →" },
+            { id: "v13", name: "v13: Gradient", text: "Checkout Portfolio" },
+            { id: "v14", name: "v14: Outline Pill", text: "Checkout Portfolio" },
+            { id: "v15", name: "v15: Clean Sans", text: "Checkout Portfolio" },
+            { id: "v16", name: "v16: Bracketed", text: "[ checkout portfolio ]" },
+            { id: "v17", name: "v17: Aqua Underline", text: "Checkout Portfolio" },
+            { id: "v18", name: "v18: Small Caps", text: "Checkout Portfolio" },
+            { id: "v19", name: "v19: Light Badge", text: "Checkout Portfolio" },
+            { id: "v20", name: "v20: Dark Badge", text: "Checkout Portfolio" }
+        ];
+
+        variations.forEach(v => {
+            document.write(`
+            <div class="var-card ${v.id}">
+                <div class="var-label">${v.name}</div>
+                <div class="qr-placeholder" aria-hidden="true" style="margin-top: 20px;">
+                    <div class="qr-code">
+                        <img src="qr-code.png" alt="Scan to connect" width="68" height="68" style="object-fit: contain;">
+                    </div>
+                    <div class="qr-cta">${v.text}</div>
+                    <div class="qr-wordmark">AtomIQ<span class="works">Works</span></div>
+                    <p class="tagline qr-tagline">Building what matters</p>
+                </div>
+            </div>
+        `);
+        });
+    </script>
+
+</body>
+
+</html>
