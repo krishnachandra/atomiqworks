@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://atomiqworks.com",
     siteName: "AtomIQWorks",
-    title: "AtomIQWorks | Engineering the Future of Digital",
+    title: "AtomiqWorks | Expert Web & App Development",
     description: "We build scalable, high-performance digital experiences for ambitious brands. Specialized in Next.js, AI integration, and premium UI/UX.",
     images: [{
       url: "/atomiq-logo.png", // We generated this earlier
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AtomIQWorks | Premium Digital Product Agency",
+    title: "AtomiqWorks | Expert Web & App Development",
     description: "Engineering the Future of Digital. We build scalable, high-performance digital experiences.",
     images: ["/atomiq-logo.png"],
     creator: "@atomiqworks",
@@ -74,8 +74,9 @@ export default function RootLayout({
     "description": "AtomIQWorks is a premium digital product agency engineering scalable, high-performance experiences.",
     "address": {
       "@type": "PostalAddress",
-      "addressCountry": "IN",
-      "addressRegion": "India"
+      "addressLocality": "Hyderabad",
+      "addressRegion": "Telangana",
+      "addressCountry": "IN"
     },
     "geo": {
       "@type": "GeoCoordinates",
@@ -108,6 +109,12 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+        {/* Google Search Console Verification */}
+        {/* <meta name="google-site-verification" content="YOUR_GOOGLE_VERIFICATION_CODE" /> */}
+        {/* Bing Webmaster Verification */}
+        <meta name="msvalidate.01" content="674EA7673753D39648DEE2FBB24952BB" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

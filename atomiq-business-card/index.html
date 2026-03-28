@@ -60,10 +60,10 @@
 
                     <!-- Labels -->
                     <div class="creation-labels" aria-label="Expertise">
-                        <span class="creation-tag tag-websites"><span style="visibility: hidden;">Websites</span></span>
-                        <span class="creation-tag tag-apps"><span style="visibility: hidden;">Mobile Apps</span></span>
-                        <span class="creation-tag tag-tools"><span style="visibility: hidden;">AI Tools</span></span>
-                        <span class="creation-tag tag-saas"><span style="visibility: hidden;">SaaS</span></span>
+                        <span class="creation-tag tag-websites"><span>Websites</span></span>
+                        <span class="creation-tag tag-apps"><span>Mobile Apps</span></span>
+                        <span class="creation-tag tag-tools"><span>AI Tools</span></span>
+                        <span class="creation-tag tag-saas"><span>SaaS</span></span>
                     </div>
                 </main>
 
@@ -126,7 +126,7 @@
                                         </path>
                                         <polyline points="22,6 12,13 2,6"></polyline>
                                     </svg>
-                                    <span class="link-text">atomiqworks@gmail.com</span>
+                                    <span class="link-text">hello@atomiqworks.com</span>
                                 </span>
                                 <span class="link-item">
                                     <div class="phone-icons">
@@ -167,7 +167,7 @@
     </div>
 
     <!-- Demo Environment Controls -->
-    <nav class="demo-controls" aria-label="Demo controls">
+    <nav class="demo-controls" aria-label="Demo controls" style="margin-bottom: 8px;">
         <button class="ctrl-btn" onclick="toggleTheme()" title="Toggle Light/Dark Theme">🌓 Theme</button>
         <button class="ctrl-btn" onclick="toggleLayout()" title="Switch layout axis (Stack / Compact)">📐
             Layout</button>
@@ -179,6 +179,47 @@
         <button class="ctrl-btn" onclick="downloadPreview(5)" title="Capture at 5x">📷 5x</button>
         <button class="ctrl-btn" onclick="downloadPreview(10)" title="Capture at 10x (Pro)">📷 10x</button>
         <button class="ctrl-btn" onclick="downloadPreview(20)" title="Capture at 20x (Extreme Print)">📷 20x</button>
+    </nav>
+
+    <!-- Layer Export Controls -->
+    <nav class="demo-controls" aria-label="Layer Export controls"
+        style="background: rgba(100, 50, 255, 0.1); border: 1px solid rgba(100,50,255,0.3);">
+        <span style="font-size: 0.8rem; font-weight: bold; margin-right: 10px; color: var(--text-main);">📸 Print Layers
+            (20x):</span>
+        <button class="ctrl-btn" onclick="exportLayer('atomiqworks')" title="AtomIQworks text only without grid">1️⃣
+            AtomIQworks (No Grid)</button>
+        <button class="ctrl-btn" onclick="exportLayer('navbar-grid')" title="Navbar, icons, whatsapp and grid only">2️⃣
+            Navbar & Grid Only</button>
+        <button class="ctrl-btn" onclick="exportLayer('buttons')" title="Buttons without text, no navbar, no grid">3️⃣
+            Buttons Only (No text/grid)</button>
+        <button class="ctrl-btn" onclick="exportLayer('buttons-with-text')"
+            title="Buttons with text, no navbar, no grid">4️⃣
+            Buttons + Text Only</button>
+        <button class="ctrl-btn" onclick="exportLayer('buttons-noshadow')"
+            title="Buttons with text but NO SHADOWS, no navbar, no grid">5️⃣
+            Buttons + Text (No Shadow)</button>
+        <button class="ctrl-btn" onclick="exportLayer('base-everything-else')"
+            title="Everything else EXCEPT the main AtomIQworks text and the buttons">6️⃣
+            Base, Logo, Taglines (No Wordmark/Buttons)</button>
+        <button class="ctrl-btn" onclick="exportLayer('thunder-icon')" title="Thunder Icon Only">7️⃣
+            Thunder Icon Only</button>
+        <button class="ctrl-btn" onclick="exportLayer('base-no-wordmark-btns-thunder')"
+            title="Everything EXCEPT AtomIQworks text, buttons, and thunder icon">8️⃣
+            Base (No Wordmark/Btns/Thunder)</button>
+        <button class="ctrl-btn" onclick="downloadBackView(20)" title="Download complete Back View at 20x">9️⃣
+            Back View 20x</button>
+    </nav>
+
+    <!-- SVG Export Controls -->
+    <nav class="demo-controls" aria-label="SVG Export controls"
+        style="background: rgba(0, 194, 168, 0.1); border: 1px solid rgba(0,194,168,0.3);">
+        <span style="font-size: 0.8rem; font-weight: bold; margin-right: 10px; color: var(--text-main);">📦 SVG
+            Exports:</span>
+        <button class="ctrl-btn" onclick="downloadSvg('front')" title="Download Front as SVG">🖼️ Front SVG</button>
+        <button class="ctrl-btn" onclick="downloadSvg('back')" title="Download Back as SVG">🖼️ Back SVG</button>
+        <button class="ctrl-btn" onclick="downloadAllSvgs()" title="Download all front layers + front + back as SVGs"
+            style="background: linear-gradient(135deg, #00C2A8, #4338CA); color: white; border: none;">📥 Download All
+            SVGs</button>
     </nav>
 
     <!-- html-to-image for capturing the card -->
@@ -251,6 +292,335 @@
                 console.error('Error generating image!', error);
                 alert("Failed to capture preview. 20x might be too large for some browsers, try 10x.");
             }
+        }
+
+        async function downloadBackView(scale = 20) {
+            try {
+                const rect = cardBackEl.getBoundingClientRect();
+                const dataUrl = await htmlToImage.toPng(cardBackEl, {
+                    pixelRatio: scale,
+                    quality: 1,
+                    style: {
+                        transform: `scale(${scale})`,
+                        transformOrigin: 'top left',
+                        width: `${rect.width}px`,
+                        height: `${rect.height}px`
+                    },
+                    width: rect.width * scale,
+                    height: rect.height * scale
+                });
+
+                const link = document.createElement('a');
+                link.download = `atomiq-back-view-${scale}x.png`;
+                link.href = dataUrl;
+                link.click();
+            } catch (error) {
+                console.error('Error generating back view!', error);
+                alert('Failed to capture back view. Try a smaller scale.');
+            }
+        }
+
+        async function exportLayer(type, scale = 20) {
+            const brandingGroup = document.getElementById('brandingGroup');
+            const labels = document.querySelector('.creation-labels');
+            const chromeBar = document.querySelector('.chrome-bar');
+            const frontContact = document.querySelector('.front-contact');
+
+            // Branding individual components
+            const logoContainer = document.querySelector('.logo-container');
+            const wordmark = document.querySelector('.wordmark');
+            const tagline = document.querySelector('.tagline');
+            const aiSpeed = document.querySelector('.ai-speed');
+
+            // Save originals
+            const origBg = cardEl.style.background;
+            const origShadow = cardEl.style.boxShadow;
+            const origBorder = cardEl.style.borderColor;
+            const origBrandingV = brandingGroup.style.visibility;
+            const origLabelsV = labels.style.visibility;
+            const origChromeV = chromeBar.style.visibility;
+            const origContactV = frontContact ? frontContact.style.visibility : '';
+
+            const origLogoV = logoContainer ? logoContainer.style.visibility : '';
+            const origWordmarkV = wordmark ? wordmark.style.visibility : '';
+            const origTaglineV = tagline ? tagline.style.visibility : '';
+            const origAiSpeedV = aiSpeed ? aiSpeed.style.visibility : '';
+
+            // Inject temporary styles for removing grid or hiding things
+            const tempStyle = document.createElement('style');
+            let styleRules = '';
+
+            // Setup based on type
+            if (type === 'atomiqworks') {
+                // 1. Only "AtomIQworks" as a separate layer (without background grid)
+                cardEl.style.background = 'transparent';
+                cardEl.style.boxShadow = 'none';
+                cardEl.style.borderColor = 'transparent';
+
+                chromeBar.style.visibility = 'hidden';
+                if (frontContact) frontContact.style.visibility = 'hidden';
+                labels.style.visibility = 'hidden';
+
+                // Hide logo, tagline, speed, only show wordmark
+                if (logoContainer) logoContainer.style.visibility = 'hidden';
+                if (tagline) tagline.style.visibility = 'hidden';
+                if (aiSpeed) aiSpeed.style.visibility = 'hidden';
+
+                // Remove grid
+                styleRules += '.card-content::before { display: none !important; } ';
+
+            } else if (type === 'navbar-grid') {
+                // 2. Only Navbar, icons, whatsapp and grid as a separate layer (without anything else)
+                cardEl.style.background = 'transparent'; // Let it remain transparent so grid floats
+                cardEl.style.boxShadow = 'none';
+                cardEl.style.borderColor = 'transparent';
+
+                brandingGroup.style.visibility = 'hidden';
+                labels.style.visibility = 'hidden';
+                // Grid remains because we didn't add display: none to ::before
+
+            } else if (type === 'buttons') {
+                // 3. Only buttons without btn text, navbar, "deliver"..and others and without gridtoo
+                cardEl.style.background = 'transparent';
+                cardEl.style.boxShadow = 'none';
+                cardEl.style.borderColor = 'transparent';
+
+                chromeBar.style.visibility = 'hidden';
+                if (frontContact) frontContact.style.visibility = 'hidden';
+                brandingGroup.style.visibility = 'hidden';
+
+                // Hide btn text
+                styleRules += '.creation-tag { color: transparent !important; } .creation-tag span { visibility: hidden !important; display: none !important; } ';
+
+                // Remove grid
+                styleRules += '.card-content::before { display: none !important; } ';
+
+            } else if (type === 'buttons-with-text') {
+                // 4. Buttons with text only, no navbar, no branding, no grid
+                cardEl.style.background = 'transparent';
+                cardEl.style.boxShadow = 'none';
+                cardEl.style.borderColor = 'transparent';
+
+                chromeBar.style.visibility = 'hidden';
+                if (frontContact) frontContact.style.visibility = 'hidden';
+                brandingGroup.style.visibility = 'hidden';
+
+                // Remove grid
+                styleRules += '.card-content::before { display: none !important; } ';
+
+            } else if (type === 'buttons-noshadow') {
+                // 5. Buttons with text only, no navbar, no branding, no grid, AND NO SHADOWS on the buttons themselves
+                cardEl.style.background = 'transparent';
+                cardEl.style.boxShadow = 'none';
+                cardEl.style.borderColor = 'transparent';
+
+                chromeBar.style.visibility = 'hidden';
+                if (frontContact) frontContact.style.visibility = 'hidden';
+                brandingGroup.style.visibility = 'hidden';
+
+                // Remove grid and remove button shadows
+                styleRules += '.card-content::before { display: none !important; } .creation-tag { box-shadow: none !important; border: 1px solid rgba(0,0,0,0.1); } ';
+
+            } else if (type === 'base-everything-else') {
+                // 6. Base Layer: Keep Grid, Background, Logo, Tagline, AI-speed, Navbar.
+                // HIDE the `AtomIQworks` wordmark and HIDE all the buttons.
+                if (wordmark) wordmark.style.visibility = 'hidden';
+                if (labels) labels.style.visibility = 'hidden';
+
+            } else if (type === 'thunder-icon') {
+                // 7. Thunder Icon ONLY
+                cardEl.style.background = 'transparent';
+                cardEl.style.boxShadow = 'none';
+                cardEl.style.borderColor = 'transparent';
+
+                chromeBar.style.visibility = 'hidden';
+                if (frontContact) frontContact.style.visibility = 'hidden';
+                labels.style.visibility = 'hidden';
+
+                if (logoContainer) logoContainer.style.visibility = 'hidden';
+                if (tagline) tagline.style.visibility = 'hidden';
+                if (wordmark) wordmark.style.visibility = 'hidden';
+
+                // Hide text inside ai-speed but keep icon visible
+                styleRules += '.card-content::before { display: none !important; } ';
+                styleRules += '.ai-speed { color: transparent !important; } ';
+                styleRules += '.ai-speed span { visibility: visible !important; } ';
+
+            } else if (type === 'base-no-wordmark-btns-thunder') {
+                // 8. Everything EXCEPT AtomIQworks wordmark, buttons, and thunder icon
+                if (wordmark) wordmark.style.visibility = 'hidden';
+                if (labels) labels.style.visibility = 'hidden';
+
+                // Hide ONLY the thunder icon SVG, keep "Delivering at AI speed" text
+                styleRules += '.thunder-icon { visibility: hidden !important; } ';
+            }
+
+            if (styleRules) {
+                tempStyle.innerHTML = styleRules;
+                document.head.appendChild(tempStyle);
+            }
+
+            try {
+                const rect = cardEl.getBoundingClientRect();
+
+                // Allow layout to update visibility properties
+                await new Promise(r => setTimeout(r, 150));
+
+                const dataUrl = await htmlToImage.toPng(cardEl, {
+                    pixelRatio: scale,
+                    quality: 1,
+                    style: {
+                        transform: `scale(${scale})`,
+                        transformOrigin: 'top left',
+                        width: `${rect.width}px`,
+                        height: `${rect.height}px`,
+                        margin: 0
+                    },
+                    width: rect.width * scale,
+                    height: rect.height * scale
+                });
+
+                const link = document.createElement('a');
+                link.download = `atomiq-${type}-layer-20x.png`;
+                link.href = dataUrl;
+                link.click();
+            } catch (err) {
+                console.error('Error generating layer image!', err);
+                alert('Export failed. Note: 20x resolution might be memory-intensive.');
+            } finally {
+                // Restore everything
+                cardEl.style.background = origBg;
+                cardEl.style.boxShadow = origShadow;
+                cardEl.style.borderColor = origBorder;
+                brandingGroup.style.visibility = origBrandingV;
+                labels.style.visibility = origLabelsV;
+                chromeBar.style.visibility = origChromeV;
+                if (frontContact) frontContact.style.visibility = origContactV;
+
+                if (logoContainer) logoContainer.style.visibility = origLogoV;
+                if (wordmark) wordmark.style.visibility = origWordmarkV;
+                if (tagline) tagline.style.visibility = origTaglineV;
+                if (aiSpeed) aiSpeed.style.visibility = origAiSpeedV;
+
+                if (document.head.contains(tempStyle)) {
+                    document.head.removeChild(tempStyle);
+                }
+            }
+        }
+
+        async function downloadSvg(view) {
+            const target = view === 'back' ? cardBackEl : cardEl;
+            try {
+                const dataUrl = await htmlToImage.toSvg(target, {
+                    quality: 1
+                });
+                const link = document.createElement('a');
+                link.download = `atomiq-${view}-view.svg`;
+                link.href = dataUrl;
+                link.click();
+            } catch (err) {
+                console.error(`Error generating ${view} SVG!`, err);
+                alert(`Failed to generate ${view} SVG.`);
+            }
+        }
+
+        async function exportLayerSvg(type) {
+            const brandingGroup = document.getElementById('brandingGroup');
+            const labels = document.querySelector('.creation-labels');
+            const chromeBar = document.querySelector('.chrome-bar');
+            const frontContact = document.querySelector('.front-contact');
+            const logoContainer = document.querySelector('.logo-container');
+            const wordmark = document.querySelector('.wordmark');
+            const tagline = document.querySelector('.tagline');
+            const aiSpeed = document.querySelector('.ai-speed');
+
+            const origBg = cardEl.style.background;
+            const origShadow = cardEl.style.boxShadow;
+            const origBorder = cardEl.style.borderColor;
+            const origBrandingV = brandingGroup.style.visibility;
+            const origLabelsV = labels.style.visibility;
+            const origChromeV = chromeBar.style.visibility;
+            const origContactV = frontContact ? frontContact.style.visibility : '';
+            const origLogoV = logoContainer ? logoContainer.style.visibility : '';
+            const origWordmarkV = wordmark ? wordmark.style.visibility : '';
+            const origTaglineV = tagline ? tagline.style.visibility : '';
+            const origAiSpeedV = aiSpeed ? aiSpeed.style.visibility : '';
+
+            const tempStyle = document.createElement('style');
+            let styleRules = '';
+
+            if (type === 'atomiqworks') {
+                cardEl.style.background = 'transparent'; cardEl.style.boxShadow = 'none'; cardEl.style.borderColor = 'transparent';
+                chromeBar.style.visibility = 'hidden'; if (frontContact) frontContact.style.visibility = 'hidden'; labels.style.visibility = 'hidden';
+                if (logoContainer) logoContainer.style.visibility = 'hidden'; if (tagline) tagline.style.visibility = 'hidden'; if (aiSpeed) aiSpeed.style.visibility = 'hidden';
+                styleRules += '.card-content::before { display: none !important; } ';
+            } else if (type === 'navbar-grid') {
+                cardEl.style.background = 'transparent'; cardEl.style.boxShadow = 'none'; cardEl.style.borderColor = 'transparent';
+                brandingGroup.style.visibility = 'hidden'; labels.style.visibility = 'hidden';
+            } else if (type === 'buttons') {
+                cardEl.style.background = 'transparent'; cardEl.style.boxShadow = 'none'; cardEl.style.borderColor = 'transparent';
+                chromeBar.style.visibility = 'hidden'; if (frontContact) frontContact.style.visibility = 'hidden'; brandingGroup.style.visibility = 'hidden';
+                styleRules += '.creation-tag { color: transparent !important; } .creation-tag span { visibility: hidden !important; display: none !important; } ';
+                styleRules += '.card-content::before { display: none !important; } ';
+            } else if (type === 'buttons-with-text') {
+                cardEl.style.background = 'transparent'; cardEl.style.boxShadow = 'none'; cardEl.style.borderColor = 'transparent';
+                chromeBar.style.visibility = 'hidden'; if (frontContact) frontContact.style.visibility = 'hidden'; brandingGroup.style.visibility = 'hidden';
+                styleRules += '.card-content::before { display: none !important; } ';
+            } else if (type === 'buttons-noshadow') {
+                cardEl.style.background = 'transparent'; cardEl.style.boxShadow = 'none'; cardEl.style.borderColor = 'transparent';
+                chromeBar.style.visibility = 'hidden'; if (frontContact) frontContact.style.visibility = 'hidden'; brandingGroup.style.visibility = 'hidden';
+                styleRules += '.card-content::before { display: none !important; } .creation-tag { box-shadow: none !important; border: 1px solid rgba(0,0,0,0.1); } ';
+            } else if (type === 'base-everything-else') {
+                if (wordmark) wordmark.style.visibility = 'hidden'; if (labels) labels.style.visibility = 'hidden';
+            } else if (type === 'thunder-icon') {
+                cardEl.style.background = 'transparent'; cardEl.style.boxShadow = 'none'; cardEl.style.borderColor = 'transparent';
+                chromeBar.style.visibility = 'hidden'; if (frontContact) frontContact.style.visibility = 'hidden'; labels.style.visibility = 'hidden';
+                if (logoContainer) logoContainer.style.visibility = 'hidden'; if (tagline) tagline.style.visibility = 'hidden'; if (wordmark) wordmark.style.visibility = 'hidden';
+                styleRules += '.card-content::before { display: none !important; } .ai-speed { color: transparent !important; } .ai-speed span { visibility: visible !important; } ';
+            } else if (type === 'base-no-wordmark-btns-thunder') {
+                if (wordmark) wordmark.style.visibility = 'hidden'; if (labels) labels.style.visibility = 'hidden';
+                styleRules += '.thunder-icon { visibility: hidden !important; } ';
+            }
+
+            if (styleRules) { tempStyle.innerHTML = styleRules; document.head.appendChild(tempStyle); }
+
+            try {
+                await new Promise(r => setTimeout(r, 150));
+                const dataUrl = await htmlToImage.toSvg(cardEl, { quality: 1 });
+                const link = document.createElement('a');
+                link.download = `atomiq-${type}-layer.svg`;
+                link.href = dataUrl;
+                link.click();
+            } catch (err) {
+                console.error('Error generating layer SVG!', err);
+            } finally {
+                cardEl.style.background = origBg; cardEl.style.boxShadow = origShadow; cardEl.style.borderColor = origBorder;
+                brandingGroup.style.visibility = origBrandingV; labels.style.visibility = origLabelsV; chromeBar.style.visibility = origChromeV;
+                if (frontContact) frontContact.style.visibility = origContactV;
+                if (logoContainer) logoContainer.style.visibility = origLogoV; if (wordmark) wordmark.style.visibility = origWordmarkV;
+                if (tagline) tagline.style.visibility = origTaglineV; if (aiSpeed) aiSpeed.style.visibility = origAiSpeedV;
+                if (document.head.contains(tempStyle)) document.head.removeChild(tempStyle);
+            }
+        }
+
+        async function downloadAllSvgs() {
+            const layerTypes = ['atomiqworks', 'navbar-grid', 'buttons', 'buttons-with-text', 'buttons-noshadow', 'base-everything-else', 'thunder-icon', 'base-no-wordmark-btns-thunder'];
+
+            // Front complete
+            await downloadSvg('front');
+            await new Promise(r => setTimeout(r, 500));
+
+            // Back complete
+            await downloadSvg('back');
+            await new Promise(r => setTimeout(r, 500));
+
+            // All layers
+            for (const type of layerTypes) {
+                await exportLayerSvg(type);
+                await new Promise(r => setTimeout(r, 500));
+            }
+
+            alert('All SVGs downloaded!');
         }
     </script>
 </body>
