@@ -58,6 +58,12 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  verification: {
+    google: "03yDK5IZdjQLu1p0laaq6s-18294auf_2n2_0WI",
+    other: {
+      "msvalidate.01": "674EA7673753D39648DEE2FBB24952BB",
+    },
+  },
 };
 
 export default function RootLayout({
@@ -109,12 +115,6 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <head>
-        {/* Google Search Console Verification */}
-        {/* <meta name="google-site-verification" content="YOUR_GOOGLE_VERIFICATION_CODE" /> */}
-        {/* Bing Webmaster Verification */}
-        <meta name="msvalidate.01" content="674EA7673753D39648DEE2FBB24952BB" />
-      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
